@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api\Doctors;
+namespace App\Http\Controllers\Api\Patients;
 
 use App\Http\Controllers\Controller;
-use App\Models\Doctors;
+use App\Models\Patients;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-   
     public function login (Request $request) {
         try{
             $validator = Validator::make($request->all(), [
@@ -25,7 +22,7 @@ class AuthController extends Controller
             {
                 return response(['errors'=>$validator->errors()->all()], 422);
             }
-            $user = Doctors::where('national_id', $request->national_id)->first();
+            $user = Patients::where('national_id', $request->national_id)->first();
             if ($user) {
                 if (Hash::check( $request->password,$user->password )) {
                     $token = $user->api_token;
@@ -60,7 +57,7 @@ class AuthController extends Controller
             }
                 $token = $request->bearerToken();
                 $password=$request->password;
-                $user = Doctors::where('national_id', $request->national_id)->first();
+                $user = Patients::where('national_id', $request->national_id)->first();
                 if($token==$user->api_token){
                     $user->password =bcrypt($password) ;
                     $user->save();
@@ -76,20 +73,4 @@ class AuthController extends Controller
 
       
     }
-
-
-
 }
-
-// $table->id();
-// $table->integer('national_id')->index();
-// $table->string('name');
-// $table->string('email')->unique()->nullable();
-// $table->string('password');
-// $table->text('profile_photo_path')->nullable();
-// $table->string('specialization');
-// $table->string('work_at');
-// $table->string('api_token',100)
-// ->unique()
-// ->nullable()
-// ->default(null);

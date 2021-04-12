@@ -230,7 +230,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class=""></i>  <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a class="{{Request::is('/Doctors') ? 'active':''}}" href="/Doctors">Doctors</a></li>
-                                    <li><a href="dashboard_2.html">Patient</a></li>
+                                    <li><a class="{{Request::is('/Patients')? 'active':''}}" href="/Patients">Patient</a></li>
                                    
                                 
                             </li>
@@ -477,6 +477,11 @@
             
                       @yield('EditDoctors')
                       @yield('details')
+                      @yield('Allpatients')
+                      @yield('Addpatients')
+                      @yield('searchPatients')
+                      @yield('editPatient')
+                      @yield('detailsPatient')
                     </div> <!-- container -->
                                
                 </div> <!-- content -->

@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class Doctor extends FormRequest
+class PatientsUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +24,18 @@ class Doctor extends FormRequest
     public function rules()
     {
         return [
+            'national_id' => 'required|integer|min:14',
             'name' => 'required|string|max:255',
-            'email'=>'required',
-            'national_id' => 'required|integer|unique:doctors',
             'password' => 'required|string|min:5',
-            'specialization' => 'required|string|max:255',
-            'work_at' => 'required|string|max:255',
+            'height'=>'min:0|max:200',
+            'weight'=>'min:0|max:200',
+            'birth_date'=>'date',
+            'phoneNumber'=>'required',
+            'age'=>'required',
+            'diseases'=>'required',
+            'medicines'=>'required',
+            'address'=>'required',
+            'bloodType'=>'required'
         ];
     }
 }

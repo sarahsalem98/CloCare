@@ -30,6 +30,10 @@ class Doctors extends Model
         return Storage::url($this->profile_photo_path);
     }
 
+    public function makeReports(){
+        return $this->belongsToMany('App\Models\Patients','reports','doctor_id','patient_id')->withPivot('report');
+        }
+
 }
 
 // $table->id();

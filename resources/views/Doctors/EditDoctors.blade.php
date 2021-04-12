@@ -28,7 +28,11 @@
                 </div>
             </div>
 
-	@include('Doctors._form')
+    @include('Doctors._form')
+    <div class="form-group col-md-6">
+				<label for="position">Password</label>
+				<input value="{{old('password', $doctor->password?? null)}}" type="text" class="form-control" id="position" placeholder="Enter password" name="password">
+			</div>
 
 	<button type="submit" class="btn btn-default waves-effect waves-light">Update</button>
 	<button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>

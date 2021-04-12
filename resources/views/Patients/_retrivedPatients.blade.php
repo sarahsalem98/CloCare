@@ -3,15 +3,15 @@
 		<div class="card-box">
 			<div class="row">
 				<div class="col-sm-8">
-					<form role="form" action="{{route('searchDoctors')}}" method="GET">
+					<form role="form" action="{{route('searchPatients')}}" method="GET">
 						<div class="form-group contact-search m-b-30">
-							<input type="text" id="search" class="form-control" name="search" placeholder="Search...">
+							<input type="text" id="search" class="form-control" name="searchPatient" placeholder="Search...">
 							<button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
 						</div> <!-- form-group -->
 					</form>
 				</div>
 				<div class="col-sm-4">
-					<a href="{{route('Doctors.create')}}" class="btn btn-default "> Add Doctors</a>
+					<a href="{{route('Patients.create')}}" class="btn btn-default "> Add Patient</a>
 				</div>
 			</div>
 
@@ -37,46 +37,46 @@
 							</th>
 							<th>Name</th>
 							<th>National Id</th>
-							<th>Specialization</th>
+							<th>Phone number</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 
 					<tbody>
-						@foreach($doctors as $doctor)
+						@foreach($patients as $patient)
 						<tr class="active">
 							<td>
 								<div class="checkbox checkbox-primary m-r-15">
 									<input id="checkbox2" type="checkbox" checked="">
 									<label for="checkbox2"></label>
 								</div>
-								<!-- {{$doctor->url()}} -->
-								<img src="{{$doctor->url()}}" alt="" title="{{$doctor->url()}}" class="img-circle thumb-sm" />
+								
+								<img src="{{$patient->url()}}" alt="" title="{{$patient->url()}}" class="img-circle thumb-sm" />
 							</td>
 
 							<td>
-								{{$doctor->name}}
+								{{$patient->name}}
 							</td>
 
 							<td>
-								<a href="{{route('Doctors.show',['Doctor'=>$doctor->id])}}"> {{$doctor->national_id}}</a>
+								<a href="{{route('Patients.show',['Patient'=>$patient->id])}}"> {{$patient->national_id}}</a>
 							</td>
 
 							<td>
-								{{$doctor->specialization}}
+								{{$patient->phoneNumber}}
 							</td>
 
 
 							<td>
 							
-								<form  method="POST" class="fm-inline" action="{{ route('Doctors.destroy', ['Doctor' => $doctor->id]) }}">
+								<form  method="POST" class="fm-inline" action="{{ route('Patients.destroy', ['Patient' => $patient->id]) }}">
 									@csrf
 									@method('DELETE')
 
 								
 									<a href="javascript:;" onclick="parentNode.submit();"  class="table-action-btn"><i class="md md-close"></i></a>
 								</form>
-								<a href="{{route('Doctors.edit',['Doctor' => $doctor->id])}}" class="table-action-btn"><i class="md md-edit"></i></a>
+								<a href="{{route('Patients.edit',['Patient' => $patient->id])}}" class="table-action-btn"><i class="md md-edit"></i></a>
 							</td>
 							
 						</tr>

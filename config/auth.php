@@ -42,10 +42,14 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
+        'doctor' => [
             'driver' => 'token',
-            'provider' => 'users',
             'provider' => 'doctors',
+            'hash' => false,
+        ],
+        'patient' => [
+            'driver' => 'token',
+            'provider' => 'patients',
             'hash' => false,
         ],
     ],
@@ -78,6 +82,10 @@ return [
              'driver' => 'eloquent',
             'model' => App\Models\Doctors::class
         ],
+        'patients'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Patients::class
+        ]
     ],
 
     /*
