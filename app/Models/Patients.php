@@ -32,7 +32,8 @@ protected $casts=[
 ];
 
 protected $hidden = [
- 'api_token'
+ 'api_token',
+ 'password'
 ];
 public function url(){
 return Storage::url($this->profile_photo_path);

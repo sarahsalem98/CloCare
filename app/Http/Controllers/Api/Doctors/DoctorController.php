@@ -160,9 +160,9 @@ class DoctorController extends Controller
                     }
     
                     if ($report || $photoreport){
-                    $patient->hasReports()->attach(Auth::user() ,['report' => $report ,'reports_photo_path'=>$photoreport]);
+                    $patient->makeReports()->attach(Auth::user() ,['report' => $report ,'reports_photo_path'=>$photoreport]);
                     return response()->json(['patient'=>$patient->id
-                    ,'patient with all data '=>$patient->with('hasReports')->get()
+                    ,'doctors thar make reports to the same patient'=>$patient->makeReports()->get()
                    //  ,'doctor that make the report '=>$patient->hasReports()->get()
                      ],200);
     
@@ -209,7 +209,7 @@ class DoctorController extends Controller
           public function searchPatient(Request $request){
               try{
             $word = $request->get('search');
-            $patients= Patients::where('national_id', 'LIKE', '%' . $word . '%')->get();
+            $patients= Patients::where('national_id', 'LIKE', "%{$word}%")->get();
             if($patients){
                 return response()->json(['patients found are '=>$patients],200);
             }else{

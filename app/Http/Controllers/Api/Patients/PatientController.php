@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Patients;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -40,8 +41,14 @@ class PatientController extends Controller
     {
         try{
             $patient=Patients::find($id);
+          
             if($patient){
-                return response()->json(["desirsd patient"=>$patient],200);
+                if($patient->id===Auth::user()->id){
+                    return response()->json(["desirsd patient"=>$patient],200);
+                }else{
+                    return response()->json(['msg'=>'Unauthorized'],401);
+                }
+                
             }else{
               return response()->json(["msg"=>"patient is not found"],404);
             }
