@@ -18,13 +18,16 @@ use Illuminate\Support\Facades\App;
 
 
 Route::middleware('auth:sanctum')->group(function(){
-  Route::get('/user', function (Request $request) {
-        return $request->user();
+  // Route::get('/user', function (Request $request) {
+  //   return "advlm";
        
-    });
+  //   });
 
 });
-
+Route::get('/user', function (Request $request) {
+  return "advlm";
+     
+  });
 Route::middleware('auth:doctor')->group(function(){
 
   Route::post('/addreports/{id}','App\Http\Controllers\Api\Doctors\DoctorController@AddReports');
