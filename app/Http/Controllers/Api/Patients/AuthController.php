@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Patients;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Patient;
 use App\Models\Patients;
 use Exception;
 use Illuminate\Http\Request;
@@ -26,15 +27,15 @@ class AuthController extends Controller
             if ($user) {
                 if (Hash::check( $request->password,$user->password )) {
                     $token = $user->api_token;
-                    return response()->json(["token" => $token],200);
+                    return ['patient'=>new Patient($user)];
                 } else {
                 
-                    return response()->json( ["msg" => "Password mismatch"],422);
+                    return response()->json( ["message" => "Password mismatch"],422);
     
                 }
             } else {
             
-                return response()->json(["msg" =>'User does not exist'],422);
+                return response()->json(["message" =>'User does not exist'],422);
             }
         }catch(Exception $e){
             return response()->json(['error' => $e->getMessage()], 500);
@@ -61,9 +62,9 @@ class AuthController extends Controller
                 if($token==$user->api_token){
                     $user->password =bcrypt($password) ;
                     $user->save();
-                    return response()->json(["msg" => "Password has been successfully changed"]);
+                    return response()->json(["message" => "Password has been successfully changed"]);
                 }else {
-                return response()->json(["msg" => "Invalid token provided"], 400);
+                return response()->json(["message" => "Invalid token provided"], 400);
             }
 
         }catch(Exception $e){

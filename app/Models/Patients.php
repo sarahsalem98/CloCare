@@ -40,7 +40,7 @@ return Storage::url($this->profile_photo_path);
 }
 
 public function makeReports(){
-return $this->belongsToMany('App\Models\Doctors','reports','patient_id','doctor_id')->withPivot('patient_id','doctor_id','report');
+return $this->belongsToMany('App\Models\Doctors','reports','patient_id','doctor_id')->withPivot('patient_id','doctor_id','report','reports_photo_path')->withTimestamps();
 }
 
 

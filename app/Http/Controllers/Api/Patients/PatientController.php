@@ -46,11 +46,11 @@ class PatientController extends Controller
                 if($patient->id===Auth::user()->id){
                     return response()->json(["desirsd patient"=>$patient],200);
                 }else{
-                    return response()->json(['msg'=>'Unauthorized'],401);
+                    return response()->json(['message'=>'Unauthorized'],401);
                 }
                 
             }else{
-              return response()->json(["msg"=>"patient is not found"],404);
+              return response()->json(["message"=>"patient is not found"],404);
             }
         }
         catch(Exception $e){
@@ -93,7 +93,7 @@ class PatientController extends Controller
                ]
                ,200);
            }else{
-               return response()->json(['msg'=>'patient is not found'],404);
+               return response()->json(['message'=>'patient is not found'],404);
            }
         }catch(Exception $e){
            return response()->json(['error' => $e->getMessage()], 500);

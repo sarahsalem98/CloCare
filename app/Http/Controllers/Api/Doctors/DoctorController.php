@@ -85,7 +85,7 @@ class DoctorController extends Controller
             if($patient){
                 return response()->json(["desirsd patient"=>$patient],200);
             }else{
-              return response()->json(["msg"=>"patient is not found"],404);
+              return response()->json(["message"=>"patient is not found"],404);
             }
         }
         catch(Exception $e){
@@ -136,9 +136,9 @@ class DoctorController extends Controller
             $patient=Patients::find($id);
             if($patient){
                 $patient->destroy();
-                return response()->json(["msg"=>"patient has been deleted successfully"],200);
+                return response()->json(["message"=>"patient has been deleted successfully"],200);
             }else{
-                return response()->json(["msg"=>"this patient can not be found"],404);
+                return response()->json(["message"=>"this patient can not be found"],404);
             }
         }  catch(Exception $e){
             return response()->json(['error' => $e->getMessage()], 500);
@@ -151,7 +151,7 @@ class DoctorController extends Controller
  
            try{
             $report=$request['report'];
-            $photoreport=$request['	reports_photo_path'];
+            $photoreport=$request['reports_photo_path'];
         
             $patient= Patients::find($id);
             if($patient){
@@ -161,20 +161,21 @@ class DoctorController extends Controller
     
                     if ($report || $photoreport){
                     $patient->makeReports()->attach(Auth::user() ,['report' => $report ,'reports_photo_path'=>$photoreport]);
-                    return response()->json(['patient'=>$patient->id
+                    return response()->json([
+                        'patient'=>$patient->id
                     ,'doctors thar make reports to the same patient'=>$patient->makeReports()->get()
                    //  ,'doctor that make the report '=>$patient->hasReports()->get()
                      ],200);
     
     
                    }else{
-                    return response()->json(['msg'=>'please make sure you have added a report'],400);
+                    return response()->json(['message'=>'please make sure you have added a report'],400);
                   }
               
     
     
             }else{
-                return response()->json(['msg'=>'patient is not found so you can not add reports'],404);
+                return response()->json(['message'=>'patient is not found so you can not add reports'],404);
             }
 
            }catch(Exception $e){
@@ -192,12 +193,13 @@ class DoctorController extends Controller
                 if($patient){
                     return response()->json([
                         // 'all reports this patient has '=>$report
-                    $patient->with('makeReports')->get(),
+                 'medical_history' => $patient->with('makeReports')->get()[0],
                 //    'sdfs'=> $patient->makeReports()->limit(1)->get()
                     ]
                     ,200);
+           
                 }else{
-                    return response()->json(['msg'=>'patient is not found'],404);
+                    return response()->json(['message'=>'patient is not found'],404);
                 }
              }catch(Exception $e){
                 return response()->json(['error' => $e->getMessage()], 500);
@@ -213,7 +215,7 @@ class DoctorController extends Controller
             if($patients){
                 return response()->json(['patients found are '=>$patients],200);
             }else{
-                return response()->json(['msg'=>'no patient found'],404);
+                return response()->json(['message'=>'no patient found'],404);
             }
             }catch(Exception $e){
             return response()->json(['error' => $e->getMessage()], 500);

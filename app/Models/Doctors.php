@@ -25,6 +25,10 @@ class Doctors extends Model
         'profile_photo_path',
 
     ];
+    protected $hidden = [
+        'api_token',
+        'password'
+       ];
 
     public function url(){
         return Storage::url($this->profile_photo_path);
