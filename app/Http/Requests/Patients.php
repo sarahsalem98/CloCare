@@ -34,6 +34,8 @@ class Patients extends FormRequest
             'age'=>'required',
             'diseases'=>'required',
             'medicines'=>'required',
+            'allergies'=>'required',
+            'disabilities'=>'required',
             'address'=>'required',
             'bloodType'=>'required'
 

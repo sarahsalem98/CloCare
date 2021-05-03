@@ -9,7 +9,16 @@ class Reports extends Model
 {
     use HasFactory;
 
-
+protected $fillable=[
+   'diagnose',
+   'reports_photo_path',
+   'medicine',
+   'traits',
+   'department' ,
+   'comments',
+   'arriving_date',
+   'date'
+];
 
 
 }

@@ -24,7 +24,13 @@ class Addreports extends FormRequest
     public function rules()
     {
         return [
-            'report'=>'required'
+            'diagnose'=>'required',
+            'medicine'=>'required',
+            'traits'=>'required',
+            'department'=>'required',
+            'comments'=>'required',
+            'arriving_date'=>'required ||date',
+            // 'date='=>'required ||date'
         ];
     }
 }

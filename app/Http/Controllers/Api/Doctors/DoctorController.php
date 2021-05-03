@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Doctor;
 use App\Http\Requests\Patients as RequestsPatients;
 use App\Http\Requests\PatientsUpdate;
+use App\Http\Requests\Addreports;
 use App\Models\Doctors;
 use App\Models\Patients;
 use App\Models\Reports;
@@ -14,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+
 
 class DoctorController extends Controller
 
@@ -150,32 +153,50 @@ class DoctorController extends Controller
     public function AddReports( Request $request ,$id){
  
            try{
-            $report=$request['report'];
-            $photoreport=$request['reports_photo_path'];
-        
+            $validator = Validator::make($request->all(), [
+                'diagnose'=>'required',
+                'medicine'=>'required',
+                'traits'=>'required',
+                'department'=>'required',
+                'comments'=>'required',
+                'arriving_date'=>'required ||date',
+                'discharge_date'=>'required ||date'
+            ]);
+            if ($validator->fails())
+            {
+                return response(['errors'=>$validator->errors()->all()], 422);
+            }else{
+                
+                 
             $patient= Patients::find($id);
+            // $validatedData=$request->validated();
             if($patient){
                if($request->hasFile('reports_photo_path')){
                         $photoreport=$request->file('reports_photo_path')->store('reports');
                     }
     
-                    if ($report || $photoreport){
-                    $patient->makeReports()->attach(Auth::user() ,['report' => $report ,'reports_photo_path'=>$photoreport]);
+                    
+                    $patient->makeReports()->attach(Auth::user() ,
+                    [ 
+                    
+                    'diagnose'=>$request['diagnose'],
+                    'reports_photo_path'=>$photoreport,
+                    'medicine'=>$request['medicine'],
+                     'traits'=>$request['traits'],
+                     'department'=>$request['department'],
+                     'comments'=>$request['comments'],
+                     'arriving_date'=>$request['arriving_date'],
+                     'date'=>$request['discharge_date']
+                    
+                    ]);
                     return response()->json([
                         'patient'=>$patient->id
                     ,'doctors thar make reports to the same patient'=>$patient->makeReports()->get()
                    //  ,'doctor that make the report '=>$patient->hasReports()->get()
                      ],200);
-    
-    
-                   }else{
-                    return response()->json(['message'=>'please make sure you have added a report'],400);
-                  }
-              
-    
-    
-            }else{
-                return response()->json(['message'=>'patient is not found so you can not add reports'],404);
+                    }else{
+                        return response()->json(['message'=>'patient is not found so you can not add reports'],404);
+                    }
             }
 
            }catch(Exception $e){
