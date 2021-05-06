@@ -44,6 +44,9 @@ return $this->belongsToMany('App\Models\Doctors','reports','patient_id','doctor_
 ->withPivot('patient_id','doctor_id','diagnose','reports_photo_path','medicine','traits','department','comments','arriving_date','date')->withTimestamps();
 }
 
+public function sensors(){
+    return $this->hasMany(Sensors::class,'patient_id','id');
+}
 
 }
         

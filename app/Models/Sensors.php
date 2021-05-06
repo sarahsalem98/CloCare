@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sensors extends Model
 {
     use HasFactory;
+
+    public function patient(){
+        $this->belongsTo(Patients::class);
+    }
 }

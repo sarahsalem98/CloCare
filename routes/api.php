@@ -35,13 +35,14 @@ Route::middleware('auth:doctor')->group(function(){
   Route::resource('/DRpatient','App\Http\Controllers\Api\Doctors\DoctorController');
   Route::get('/searchPatient','App\Http\Controllers\Api\Doctors\DoctorController@searchPatient');
   
-  
 });
 
+Route::resource('Sensor','App\Http\Controllers\Api\Patients\SensorsController');
 
 Route::middleware('auth:patient')->group(function(){
    Route::resource('/patient','App\Http\Controllers\Api\Patients\PatientController')->only(['show']);
 });
+
 
 
 Route::post('/loginPatient','App\Http\Controllers\Api\Patients\AuthController@login');

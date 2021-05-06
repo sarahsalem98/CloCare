@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\Patients;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patients;
+use App\Models\Sensors;
 use Illuminate\Http\Request;
 
 class SensorsController extends Controller
@@ -25,7 +27,12 @@ class SensorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $patient= Patients::find(1);
+        $sensor= new Sensors();
+        $sensor->spo2=$request['spo2'];
+        $sensor->heartRate=$request['heartRate'];
+        $sensor->temp=$request['temp'];
+        $patient->sensors()->save($sensor);
     }
 
     /**
