@@ -54,7 +54,7 @@ class PatientController extends Controller
             }
         }
         catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
         }
     }
 
@@ -96,7 +96,7 @@ class PatientController extends Controller
                return response()->json(['message'=>'patient is not found'],404);
            }
         }catch(Exception $e){
-           return response()->json(['error' => $e->getMessage()], 500);
+           return response()->json(['errors' => $e->getMessage()], 500);
        }
 
    

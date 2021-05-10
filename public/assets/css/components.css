@@ -2410,14 +2410,14 @@ a.editable-click:hover {
   width: 40%;
 }
 .img-doctor2 {
-  border: 1px solid #ea4c89;
-  border-radius: 4px;
-  padding: 5px;
+  border: 1px solid;
+  border-radius: 2px;
+  padding: 30px;
 
 
-  display: block;
-  margin-left: auto;
-height: 400px;
- width: 400px;
+display: block;
+margin-left: auto;
+height: 200px;
+ width: 200px;
 }
 

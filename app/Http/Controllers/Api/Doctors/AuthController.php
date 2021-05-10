@@ -24,7 +24,11 @@ class AuthController extends Controller
             ]);
             if ($validator->fails())
             {
-                return response(['errors'=>$validator->errors()->all()], 422);
+                return response([
+                    "message"=>'The given data was invalid.',
+                    "errors"=>$validator->errors()
+                
+                ], 422);
             }
              $user = Doctors::where('national_id', $request->national_id)->first();
             if ($user) {
@@ -41,7 +45,7 @@ class AuthController extends Controller
                 return response()->json(["message" =>'User does not exist'],422);
             }
         }catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
         }
        
     }
@@ -57,7 +61,10 @@ class AuthController extends Controller
             ]);
             if ($validator->fails())
             {
-                return response(["errors"=>$validator->errors()->all()], 422);
+                return response([
+                    "message"=>'The given data was invalid.',
+                    "errors"=>$validator->errors()
+                ], 422);
             }
                 $token = $request->bearerToken();
                 $password=$request->password;
@@ -71,7 +78,7 @@ class AuthController extends Controller
             }
 
         }catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
         }
         
 

@@ -61,7 +61,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
             ->name('password.update');
     }
 
-    // Registration...
+   // Registration...
     if (Features::enabled(Features::registration())) {
         if ($enableViews) {
             Route::get('/register', [RegisteredUserController::class, 'create'])

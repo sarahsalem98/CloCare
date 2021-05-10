@@ -39,9 +39,23 @@
         <input value="{{old('address', $patient->address ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter address" name="address">
 
     </div>
-
+  
 
 </div>
+<div class="row">
+
+<div class="form-group col-md-4">
+        <label for="position">status</label>
+        <input value="{{old('statues', $patient->statues ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter address" name="statues">
+
+    </div>
+    <div class="form-group col-md-4">
+        <label for="position">hospital name</label>
+        <input value="{{old('hospital_name', $patient->hospital_name ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter address" name="hospital_name">
+
+    </div>
+
+ </div>
 
 
 

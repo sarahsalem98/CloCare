@@ -116,6 +116,32 @@
                                                     @endfor
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td><b>	allergies</b> </td>
+                                                <td>
+                                                    @for($i=0;$i<=5;$i++)
+                                                    {{$patient->allergies[$i]??null}}
+                                                    @endfor
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>	disabilities</b> </td>
+                                                <td>
+                                                    @for($i=0;$i<=5;$i++)
+                                                    {{$patient->disabilities[$i]??null}}
+                                                    @endfor
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>	hospital name</b> </td>
+                                                <td>
+                                            
+                                                    {{$patient->hospital_name}}
+                                                 
+                                                </td>
+                                            </tr>
+
 
                                             <tr>
                                                 <td><b>	created_at</b> </td>

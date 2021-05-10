@@ -35,7 +35,11 @@ class PatientsUpdate extends FormRequest
             'diseases'=>'required',
             'medicines'=>'required',
             'address'=>'required',
-            'bloodType'=>'required'
+            'bloodType'=>'required',
+            'statues'=>'required',
+            'hospital_name'=>'required',
+            'allergies'=>'required',
+            'disabilities'=>'required',
         ];
     }
 }

@@ -1,5 +1,10 @@
 <x-guest-layout>
     <x-jet-authentication-card>
+    @if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('error') }}
+            </div>
+        @endif
         <x-slot name="logo">
             <!-- <x-jet-authentication-card-logo /> -->
             <!-- <img src="{{ asset('logo.png') }}" alt=""> -->
@@ -14,7 +19,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('adminlogin') }}">
             @csrf
 
             <div>

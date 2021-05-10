@@ -2,7 +2,7 @@
 	<div class="col-lg-12">
 		<div class="card-box">
 			<div class="row">
-				<div class="col-sm-8">
+				<div class="col-sm-6">
 					<form role="form" action="{{route('searchPatients')}}" method="GET">
 						<div class="form-group contact-search m-b-30">
 							<input type="text" id="search" class="form-control" name="searchPatient" placeholder="Search...">
@@ -10,8 +10,14 @@
 						</div> <!-- form-group -->
 					</form>
 				</div>
-				<div class="col-sm-4">
-					<a href="{{route('Patients.create')}}" class="btn btn-default "> Add Patient</a>
+				<div class="col-sm-2">
+					<a href="{{route('Patients.create')}}" class="btn btn-default "> +Add patient</a>
+				</div>
+				<div class="col-sm-2">
+					<a href="{{route('getPatientsOut')}}" class="btn btn-danger "> "{{$count_discharge}}" out patients</a>
+				</div>
+				<div class="col-sm-2">
+					<a href="{{route('getPatientsIn')}}" class="btn btn-info "> "{{$count_In}}" In patients</a>
 				</div>
 			</div>
 

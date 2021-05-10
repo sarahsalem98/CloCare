@@ -21,8 +21,29 @@ class Patients extends Controller
      */
     public function index()
     {
-        return view('Patients.Allpatients',['patients'=>ModelsPatients::get()]);
+
+        $count_discharge=ModelsPatients::where('statues',1)->count();
+        $count_In=ModelsPatients::where('statues',0)->count();
+
+        return view('Patients.Allpatients',
+           [
+            'patients'=>ModelsPatients::get(),
+            'count_discharge'=>$count_discharge,
+            'count_In'=>$count_In
+            ]);
     }
+
+    public function indexOut(){
+        $patients=ModelsPatients::where('statues',1)->get();
+
+        return view('Patients.PatientsOut',['patients'=>$patients]);
+    }
+
+    public function indexIn(){
+        $patients=ModelsPatients::where('statues',0)->get();
+        return view('Patients.PatientsIn',['patients'=>$patients]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -124,4 +145,20 @@ class Patients extends Controller
  
         return view('Patients.SearchPatients',['patients'=>$patients]);
     }
+
+
+    public function searchIn (Request $request){
+        $word=$request->get('searchPatientIn');
+        $patients=ModelsPatients::where('national_id','LIKE','%'.$word.'%')->where('statues',0)->get();
+ 
+        return view('PPatients.PatientsIn',['patients'=>$patients]);
+    }
+
+    public function searchOut(Request $request){
+        $word=$request->get('searchPatientOut');
+        $patients=ModelsPatients::where('national_id','LIKE','%'.$word.'%')->where('statues',1)->get();
+ 
+        return view('Patients.PatientsOut',['patients'=>$patients]);
+    }
+
 }

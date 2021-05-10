@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Patients;
 use App\Models\Sensors;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SensorsController extends Controller
 {
@@ -27,7 +28,7 @@ class SensorsController extends Controller
      */
     public function store(Request $request)
     {
-        $patient= Patients::find(1);
+        $patient= Patients::find(Auth()->user()->id);
         $sensor= new Sensors();
         $sensor->spo2=$request['spo2'];
         $sensor->heartRate=$request['heartRate'];

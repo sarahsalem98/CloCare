@@ -12,26 +12,37 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/adminlogin','App\Http\Controllers\Controller@loginAdmin')->name('adminlogin');
+
+////Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+   Route::group(['middleware' => 'is_admin'], function (){
+        Route::get('/dashboard',function(){
+            return view('dashboardReal');
+        })->name('dashboard');
+        
+        Route::resource('Doctors',App\Http\Controllers\Dashboard\Doctors::class);    
+        Route::resource('Patients',App\Http\Controllers\Dashboard\Patients::class);
+        Route::resource('Employee',App\Http\Controllers\Dashboard\Employee::class);
 
 
+        Route::get('/getPatientsOut','App\Http\Controllers\Dashboard\Patients@indexOut')->name('getPatientsOut');
+        Route::get('/getPatientsIn','App\Http\Controllers\Dashboard\Patients@indexIn')->name('getPatientsIn');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function(){
-Route::get('/dashboard',function(){
-    return view('dashboardReal');
-})->name('dashboard');
+   });
 
-Route::resource('Doctors',App\Http\Controllers\Dashboard\Doctors::class);
-
-Route::resource('Patients',App\Http\Controllers\Dashboard\Patients::class);
-});
+//);
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/searchPatientIn','App\Http\Controllers\Dashboard\Patients@searchIn')->name('searchPatientIn');
+Route::get('/searchPatientOut','App\Http\Controllers\Dashboard\Patients@searchOut')->name('searchPatientOut');
 Route::get('/search','App\Http\Controllers\Dashboard\Doctors@search')->name('searchDoctors');
 
 Route::get('/searchpatients','App\Http\Controllers\Dashboard\Patients@search')->name('searchPatients');
+Route::get('/searchEmployee','App\Http\Controllers\Dashboard\Employee@search')->name('searchEmployee');
 
 
 

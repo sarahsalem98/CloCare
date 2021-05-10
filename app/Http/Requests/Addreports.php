@@ -30,7 +30,7 @@ class Addreports extends FormRequest
             'department'=>'required',
             'comments'=>'required',
             'arriving_date'=>'required ||date',
-            // 'date='=>'required ||date'
+            'discharge_date='=>'required ||date'
         ];
     }
 }

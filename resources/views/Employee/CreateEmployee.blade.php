@@ -1,0 +1,37 @@
+@extends('layouts.appReal')
+@section('createEmployee')
+<h4 class="page-title">ِ<p>Add Employee</p>
+</h4>
+<form role="form" method="POST" action="{{route('Employee.store')}}" enctype="multipart/form-data">
+	@csrf
+	@if($errors->any())
+	<div class="mt-2 mb-2">
+		@foreach($errors->all() as $error)
+		<div class="alert alert-danger" role="alert">
+			{{ $error }}
+		</div>
+		@endforeach
+	</div>
+	@endif
+	<div class="form-group col-md-6">
+		<label for="position">Profile Picture</label>
+		<input value="{{old('profile_photo_path', $employee->profile_photo_path ?? null)}}" type="file" class="form-control" name="profile_photo_path">
+	</div>
+	@include('Employee._form')
+	<div class="form-group col-md-2">
+		<label for="position">Password</label>
+		<input value="{{old('password', $employee->password?? null)}}" type="text" class="form-control" id="position" placeholder="Enter password" name="password">
+	</div>
+	<div class="row" >
+
+	</div>
+	
+	
+		<button type="submit" class="btn btn-default waves-effect waves-light">Save</button>
+		<button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>
+	
+
+
+</form>
+
+@endsection

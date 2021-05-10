@@ -99,10 +99,13 @@
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('register') }}">
+                                {{ __('add ') }}
+                            </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                    {{ __('API Tokens') }}
+                                    {{ __('API Tokens') }} 
                                 </x-jet-dropdown-link>
                             @endif
 
@@ -118,6 +121,7 @@
                                     {{ __('Log Out') }}
                                 </x-jet-dropdown-link>
                             </form>
+
                         </x-slot>
                     </x-jet-dropdown>
                 </div>

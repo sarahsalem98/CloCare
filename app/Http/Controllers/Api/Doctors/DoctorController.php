@@ -38,7 +38,7 @@ class DoctorController extends Controller
         try{
             return response()->json(["patients"=> Patients::get()],200);
         }catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
         }
 
 
@@ -69,7 +69,7 @@ class DoctorController extends Controller
              return response()->json(["Created Patient"=>$patient],200);
 
         }catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
         }
      
 
@@ -92,7 +92,7 @@ class DoctorController extends Controller
             }
         }
         catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
         }
      
     }
@@ -121,7 +121,7 @@ class DoctorController extends Controller
              return response()->json(["Updated patient"=>$patient],200);
         }
         catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
         }
 
       
@@ -144,11 +144,14 @@ class DoctorController extends Controller
                 return response()->json(["message"=>"this patient can not be found"],404);
             }
         }  catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
         }
      
     }
 
+
+
+    
 
     public function AddReports( Request $request ,$id){
  
@@ -164,7 +167,9 @@ class DoctorController extends Controller
             ]);
             if ($validator->fails())
             {
-                return response(['errors'=>$validator->errors()->all()], 422);
+                return response(['message'=>'The given data was invalid.',
+                                  'errors'=>$validator->errors()   
+                                ], 422);
             }else{
                 
                  
@@ -186,11 +191,14 @@ class DoctorController extends Controller
                      'department'=>$request['department'],
                      'comments'=>$request['comments'],
                      'arriving_date'=>$request['arriving_date'],
-                     'date'=>$request['discharge_date']
+                     'discharge_date'=>$request['discharge_date']
                     
                     ]);
+                    $patient->statues=1;
+                    $patient->save();
                     return response()->json([
-                        'patient'=>$patient->id
+                        'message'=>'the report has been added successfuly',
+                        'patient ID'=>$patient->id
                     ,'doctors thar make reports to the same patient'=>$patient->makeReports()->get()
                    //  ,'doctor that make the report '=>$patient->hasReports()->get()
                      ],200);
@@ -200,7 +208,7 @@ class DoctorController extends Controller
             }
 
            }catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
            }
 
       
@@ -223,7 +231,7 @@ class DoctorController extends Controller
                     return response()->json(['message'=>'patient is not found'],404);
                 }
              }catch(Exception $e){
-                return response()->json(['error' => $e->getMessage()], 500);
+                return response()->json(['errors' => $e->getMessage()], 500);
             }
 
         
@@ -239,7 +247,7 @@ class DoctorController extends Controller
                 return response()->json(['message'=>'no patient found'],404);
             }
             }catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['errors' => $e->getMessage()], 500);
              }
     
           }

@@ -198,6 +198,8 @@
                                 <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                             {{ __('Profile') }}
                                          </x-jet-dropdown-link>
+                                         <!-- <x-jet-dropdown-link href="{{ route('register') }}" >Register </x-jet-dropdown-link> -->
+
                                     <!-- <ul class="dropdown-menu">
                                         <li>  
                                          </li>
@@ -231,8 +233,9 @@
                                 <ul class="list-unstyled">
                                     <li><a class="{{Request::is('/Doctors') ? 'active':''}}" href="/Doctors">Doctors</a></li>
                                     <li><a class="{{Request::is('/Patients')? 'active':''}}" href="/Patients">Patient</a></li>
-                                   
-                                
+                                    <li><a class="{{Request::is('/Employee')? 'active':''}}" href="/Employee">Employee</a></li>
+
+                                    
                             </li>
 
                             <!-- <li class="has_sub">
@@ -482,6 +485,13 @@
                       @yield('searchPatients')
                       @yield('editPatient')
                       @yield('detailsPatient')
+                      @yield('AllEmployee')
+                      @yield('createEmployee')
+                      @yield('Employeedetails')
+                      @yield('EditEmployee')
+                      @yield('AllpatientsOut')
+                      @yield('AllpatientsIn')
+
                     </div> <!-- container -->
                                
                 </div> <!-- content -->

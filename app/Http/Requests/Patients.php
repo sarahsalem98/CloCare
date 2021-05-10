@@ -37,7 +37,8 @@ class Patients extends FormRequest
             'allergies'=>'required',
             'disabilities'=>'required',
             'address'=>'required',
-            'bloodType'=>'required'
+            'bloodType'=>'required',
+            'hospital_name'=>'required'
 
         ];
     }

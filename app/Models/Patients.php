@@ -41,7 +41,7 @@ return Storage::url($this->profile_photo_path);
 
 public function makeReports(){
 return $this->belongsToMany('App\Models\Doctors','reports','patient_id','doctor_id')
-->withPivot('patient_id','doctor_id','diagnose','reports_photo_path','medicine','traits','department','comments','arriving_date','date')->withTimestamps();
+->withPivot('patient_id','doctor_id','diagnose','reports_photo_path','medicine','traits','department','comments','arriving_date','discharge_date')->withTimestamps();
 }
 
 public function sensors(){

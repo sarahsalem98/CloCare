@@ -26,7 +26,7 @@ class Doctor extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email'=>'required',
+            'email'=>'required|unique:doctors',
             'national_id' => 'required|integer|unique:doctors',
             'password' => 'required|string|min:5',
             'specialization' => 'required|string|max:255',
