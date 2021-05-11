@@ -44,6 +44,14 @@
                 <x-jet-input id="work_at" class="block mt-1 w-full" type="text" name="work_at" :value="old('work_at')" required />
             </div>
             <div class="mt-4">
+                <x-jet-label for="password" value="{{ __('Address') }}" />
+                <x-jet-input id="work_at" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
+            </div>
+            <div class="mt-4">
+                <x-jet-label for="password" value="{{ __('Phone number') }}" />
+                <x-jet-input id="work_at" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')" required />
+            </div>
+            <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('is_admin') }}" />
                 <x-jet-input id="is_admin" class="block mt-1 w-half" type="text" name="is_admin" :value="old('is_admin')" required />
             </div>

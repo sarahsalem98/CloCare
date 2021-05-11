@@ -40,7 +40,9 @@ class CreateNewUser implements CreatesNewUsers
             'is_admin'=>$input['is_admin'],
             'national_id'=>$input['national_id'],
             'specialization'=>$input['specialization'],
-            'work_at'=>$input['work_at']
+            'work_at'=>$input['work_at'],
+            'address'=>$input['address'],
+            'phone_number'=>$input['phone_number']
         ]);
     }
 }
