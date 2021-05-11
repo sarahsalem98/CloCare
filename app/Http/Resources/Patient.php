@@ -18,7 +18,7 @@ class Patient extends JsonResource
             'id '=>$this->id,
             'national_id'=>$this->national_id,
             'name'=>$this->name,
-            'password'=>$this->password,
+            // 'password'=>$this->password,
             'phoneNumber'=>$this->phoneNumber,
             'address'=>$this->address,
             'api_token'=>$this->api_token,
@@ -30,6 +30,8 @@ class Patient extends JsonResource
             'profile_photo_path'=>$this->profile_photo_path,
             'diseases'=>$this->diseases,
             'medicines'=>$this->medicines,
+            'statues'=>$this->statues,
+            'hospital_name'=>$this->hospital_name,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at
         ];

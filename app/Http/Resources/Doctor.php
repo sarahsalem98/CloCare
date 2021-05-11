@@ -19,7 +19,7 @@ class Doctor extends JsonResource
             'national_id'=>$this->national_id,
             'name'=>$this->name,
             'email'=>$this->email,
-            'password'=>$this->password,
+            // 'password'=>$this->password,
             'profile_photo_path'=>$this->profile_photo_path,
             'specialization'=>$this->specialization,
             'work_at'=>$this->work_at,
