@@ -86,6 +86,7 @@ class Patients extends Controller
     public function show($id)
     {
         $patient=ModelsPatients::findOrFail($id);
+        
        return view('Patients.Details',['patient'=>$patient]);
     }
 

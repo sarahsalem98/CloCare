@@ -7,6 +7,8 @@ use App\Http\Requests\Doctor;
 use App\Http\Requests\Patients as RequestsPatients;
 use App\Http\Requests\PatientsUpdate;
 use App\Http\Requests\Addreports;
+use App\Http\Requests\Diseaes;
+use App\Models\Diseaes as ModelsDiseaes;
 use App\Models\Doctors;
 use App\Models\Patients;
 use App\Models\Reports;
@@ -58,7 +60,7 @@ class DoctorController extends Controller
             $validatedData=$request->validated();
             $patient= new Patients();
             $patient->fill($validatedData);
-            $patient->password=bcrypt($request['password']);
+            $patient->password=bcrypt($request['national_id']);
             $patient->api_token=Str::random(100);
             if($request->hasFile('profile_photo_path')){
                 $path=$request->file('profile_photo_path')->store('patients');
@@ -107,13 +109,14 @@ class DoctorController extends Controller
     public function update(PatientsUpdate $request, $id)
     {
         try{
-            $patient=Patients::findOrFail($id);
+            $patient=Patients::find($id);
             $validatedData=$request->validated();
             $patient->fill($validatedData);
             if($request->hasFile('profile_photo_path')){
-            $path=$request->file('profile_photo_path')->store('patients');
+         
             if($patient->profile_photo_path){
                 Storage::delete($patient->profile_photo_path);
+                $path=$request->file('profile_photo_path')->store('patients');
             }
              $patient->profile_photo_path=$path;
             }
@@ -153,63 +156,40 @@ class DoctorController extends Controller
 
     
 
-    public function AddReports( Request $request ,$id){
+    public function AddReports( Addreports $request ,$id){
  
-           try{
-            $validator = Validator::make($request->all(), [
-                'diagnose'=>'required',
-                'medicine'=>'required',
-                'traits'=>'required',
-                'department'=>'required',
-                'comments'=>'required',
-                'arriving_date'=>'required ||date',
-                'discharge_date'=>'required ||date'
-            ]);
-            if ($validator->fails())
-            {
-                return response(['message'=>'The given data was invalid.',
-                                  'errors'=>$validator->errors()   
-                                ], 422);
-            }else{
-                
-                 
+                try{     
             $patient= Patients::find($id);
             // $validatedData=$request->validated();
             if($patient){
-               if($request->hasFile('reports_photo_path')){
-                        $photoreport=$request->file('reports_photo_path')->store('reports');
-                    }
-    
-                    
-                    $patient->makeReports()->attach(Auth::user() ,
-                    [ 
-                    
-                    'diagnose'=>$request['diagnose'],
-                    'reports_photo_path'=>$photoreport,
-                    'medicine'=>$request['medicine'],
-                     'traits'=>$request['traits'],
-                     'department'=>$request['department'],
-                     'comments'=>$request['comments'],
-                     'arriving_date'=>$request['arriving_date'],
-                     'discharge_date'=>$request['discharge_date']
-                    
-                    ]);
-                    $patient->statues=1;
-                    $patient->save();
+                $validatedData=$request->validated();
+                $report =new Reports;
+                if($request->hasFile('reports_photo_path')){
+                    $photoreport=$request->file('reports_photo_path')->store('reports');
+                 
+                }
+                $report->fill($validatedData);
+                $report->reports_photo_path=$photoreport;
+                $report->doctor_id=Auth::user()->id;
+                $patient->statues=1;
+                $patient->save();
+                $patient->report()->save($report);
+                 
                     return response()->json([
-                        'message'=>'the report has been added successfuly',
+                        'message'=>' report has been added successfuly',
                         'patient ID'=>$patient->id
-                    ,'doctors thar make reports to the same patient'=>$patient->makeReports()->get()
+                    ,   ' reports for tha same patient'=>$patient->where('id',$id)->with('report')->get()
                    //  ,'doctor that make the report '=>$patient->hasReports()->get()
                      ],200);
                     }else{
                         return response()->json(['message'=>'patient is not found so you can not add reports'],404);
                     }
-            }
+            
 
            }catch(Exception $e){
             return response()->json(['errors' => $e->getMessage()], 500);
            }
+
 
       
     }
@@ -218,11 +198,10 @@ class DoctorController extends Controller
              try{
               
                 $patient= Patients::find($id);
-                $report=Reports::where('patient_id','=',$id)->get();
                 if($patient){
                     return response()->json([
                         // 'all reports this patient has '=>$report
-                 'medical_history' => $patient->with('makeReports')->get()[0],
+                 'medical_history ' => $patient->where('id',$id)->with('report')->with('disease')->with('test')->get(),
                 //    'sdfs'=> $patient->makeReports()->limit(1)->get()
                     ]
                     ,200);
@@ -237,6 +216,8 @@ class DoctorController extends Controller
         
 
           }
+
+
           public function searchPatient(Request $request){
               try{
             $word = $request->get('search');
@@ -251,5 +232,60 @@ class DoctorController extends Controller
              }
     
           }
+
+          
+          
+
+          
+    public function AddDiseases( Diseaes $request ,$id){
+ 
+            try{     
+        $patient= Patients::find($id);
+        // $validatedData=$request->validated();
+        if($patient){
+            
+            $validatedData=$request->validated();
+             $diseas =new ModelsDiseaes ;
+            $diseas->fill($validatedData);
+            $diseas->doctor_id=Auth::user()->id;
+            $patient->disease()->save($diseas);
+             
+                return response()->json([
+                    'message'=>' disease has been added successfuly',
+                    'patient ID'=>$patient->id
+                ,   ' disease for tha same patient'=>$patient->where('id',$id)->with('disease')->get()
+               //  ,'doctor that make the report '=>$patient->hasReports()->get()
+                 ],200);
+                }else{
+                    return response()->json(['message'=>'patient is not found so you can not add reports'],404);
+                }
+        
+
+       }catch(Exception $e){
+        return response()->json(['errors' => $e->getMessage()], 500);
+       }
+
+  
+    }
+
+    public function showDisease($id){
+        try{
+              
+            $patient= Patients::find($id);
+            if($patient){
+                return response()->json([
+                    // 'all reports this patient has '=>$report
+             'Diseases' => $patient->where('id',$id)->with('disease')->get(),
+            //    'sdfs'=> $patient->makeReports()->limit(1)->get()
+                ]
+                ,200);
+       
+            }else{
+                return response()->json(['message'=>'patient is not found'],404);
+            }
+         }catch(Exception $e){
+            return response()->json(['errors' => $e->getMessage()], 500);
+        }
+    }
 
 }

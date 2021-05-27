@@ -27,6 +27,7 @@ class EmployeeUpdate extends FormRequest
             'name' => 'required|string|max:255',
             'email'=>'required|unique:employees',
             'national_id' => 'required|integer|unique:employees',
+            'password' => 'required|string|min:8',
             'specialization' => 'required|string|max:255',
             'work_at' => 'required|string|max:255',
             'phone_number'=>'required|integer',

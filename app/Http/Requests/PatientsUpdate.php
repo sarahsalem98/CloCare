@@ -24,22 +24,18 @@ class PatientsUpdate extends FormRequest
     public function rules()
     {
         return [
-            'national_id' => 'required|integer|min:14',
-            'name' => 'required|string|max:255',
-            'password' => 'required|string|min:5',
+            'national_id' =>'integer|min:14',
+            'name' =>'string|max:255',
             'height'=>'min:0|max:200',
-            'weight'=>'min:0|max:200',
+            'weight'=>'min:0|max:250',
             'birth_date'=>'date',
-            'phoneNumber'=>'required',
-            'age'=>'required',
-            'diseases'=>'required',
-            'medicines'=>'required',
-            'address'=>'required',
-            'bloodType'=>'required',
-            'statues'=>'required',
-            'hospital_name'=>'required',
-            'allergies'=>'required',
-            'disabilities'=>'required',
+             'arriving_date'=>'date',
+             'statues'=>'boolean',
+             'smoker'=>'boolean',
+             'insurance'=>'boolean',
+             'gender'=>'string|in:male,female',
+             'age'=>'integer|min:0|max:110'
+         
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Addreports extends FormRequest
+class Diseaes extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,18 @@ class Addreports extends FormRequest
     public function rules()
     {
         return [
-            'diagnose'=>'required',
-            'medicine'=>'required',
-            'traits'=>'required',
-            'department'=>'required',
-            // 'comments'=>'required',
-            'arriving_date'=>'required ||date',
-            'discharge_date'=>'required ||date',
-            // 'reports_photo_path'=>'required'
+           'asthma'=>'boolean'
+           ,'chf'=>'boolean'
+           ,'cad'=>'boolean'
+           ,'mi'=>'boolean'
+           ,'cva'=>'boolean'
+           ,'copd'=>'boolean'
+           ,'cancer'=>'boolean'
+           ,'hypertension'=>'boolean'
+           ,'diabetes'=>'in:yes,no,borderline'
+           ,'pulse'=>'integer'
+           ,'sys_bp'=>'integer'
+           ,'dia_bp'=>'integer'
         ];
     }
 }

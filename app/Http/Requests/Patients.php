@@ -26,19 +26,24 @@ class Patients extends FormRequest
         return [
             'national_id' => 'required|integer|unique:patients|min:14',
             'name' => 'required|string|max:255',
-            'password' => 'required|string|min:5',
-            'height'=>'min:0|max:200',
-            'weight'=>'min:0|max:200',
-            'birth_date'=>'date',
-            'phoneNumber'=>'required',
-            'age'=>'required',
-            'diseases'=>'required',
-            'medicines'=>'required',
-            'allergies'=>'required',
-            'disabilities'=>'required',
-            'address'=>'required',
-            'bloodType'=>'required',
-            'hospital_name'=>'required'
+            'arriving_date'=>'required||date',
+            'phone_number'=>'required|integer|min:11',
+            'age'=>'integer|min:0|max:110',
+            'blood_type'=>'required',
+            'height'=>'required|integer|min:0|max:200',
+            'weight'=>'required|integer|min:0|max:250',
+            'gender'=>'string|in:male,female',
+            'drinks_day'=>'integer'
+            // 'phone_number'=>'required',
+            // 'age'=>'required',
+            // 'medicines'=>'required',
+           
+            // 'address'=>'required',
+            // 'bloodType'=>'required',
+            // 'hospital_name'=>'required',
+            // 'statues'=>'requi',
+            // 'gender'=>'required',
+           
 
         ];
     }

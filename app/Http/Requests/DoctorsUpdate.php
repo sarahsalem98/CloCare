@@ -26,7 +26,6 @@ class DoctorsUpdate extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email'=>'required',
             'national_id' => 'required|integer',
             'specialization' => 'required|string|max:255',
             'work_at' => 'required|string|max:255',

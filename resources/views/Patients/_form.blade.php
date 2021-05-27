@@ -25,7 +25,7 @@
     </div>
     <div class="form-group col-md-2">
         <label for="exampleInputEmail1">Phone number</label>
-        <input value="{{old('phoneNumber', $patient->phoneNumber ?? null)}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter phone number" name="phoneNumber">
+        <input value="{{old('phone_number', $patient->phone_number ?? null)}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter phone number" name="phone_number">
     </div>
 
     <div class="form-group col-md-2">
@@ -46,12 +46,12 @@
 
 <div class="form-group col-md-4">
         <label for="position">status</label>
-        <input value="{{old('statues', $patient->statues ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter address" name="statues">
+        <input value="{{old('statues', $patient->statues ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter statues" name="statues">
 
     </div>
     <div class="form-group col-md-4">
         <label for="position">hospital name</label>
-        <input value="{{old('hospital_name', $patient->hospital_name ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter address" name="hospital_name">
+        <input value="{{old('hospital_name', $patient->hospital_name ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter hospital name" name="hospital_name">
 
     </div>
 
@@ -89,40 +89,6 @@
 </div>
 
 
-<div class="row">
-
-    <div class="form-group col-md-2">
-        <label for="position">Diseases</label>
-        <input value="{{old('diseases[0]', $patient->diseases[0] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a disease" name="diseases[]">
-    </div>
-
-    <div class="form-group col-md-2">
-        <label for="position"></label>
-        <input value="{{old('diseases[1]', $patient->diseases[1] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a disease" name="diseases[]">
-    </div>
-    <div class="form-group col-md-2">
-        <label for="position"></label>
-        <input value="{{old('diseases[2]', $patient->diseases[2] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a disease" name="diseases[]">
-    </div>
-
-
-</div>
-
-<div class="row">
-    <div class="form-group col-md-2">
-        <label for="position"></label>
-        <input value="{{old('diseases[3]', $patient->diseases[3] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a disease" name="diseases[]">
-    </div>
-    <div class="form-group col-md-2">
-        <label for="position"></label>
-        <input value="{{old('diseases[4]', $patient->diseases[4] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a disease" name="diseases[]">
-    </div>
-    <div class="form-group col-md-2">
-        <label for="position"></label>
-        <input value="{{old('diseases[5]', $patient->diseases[5] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a disease" name="diseases[]">
-    </div>
-
-</div>
 
 
 <div class="row">

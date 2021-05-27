@@ -17,7 +17,8 @@ protected $fillable=[
    'department' ,
    'comments',
    'arriving_date',
-   'discharge_date'
+   'discharge_date',
+   
 ];
 
 

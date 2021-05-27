@@ -35,6 +35,14 @@ Route::middleware('auth:doctor')->group(function(){
   Route::get('/showMedicalHistory/{id}','App\Http\Controllers\Api\Doctors\DoctorController@showMedicalHistory');
   Route::get('/searchPatient','App\Http\Controllers\Api\Doctors\DoctorController@searchPatient');
   Route::resource('/DRpatient','App\Http\Controllers\Api\Doctors\DoctorController');
+//test 
+  Route::post('/addTest/{test_id}/{patient_id}','App\Http\Controllers\Api\Doctors\TestController@addtest');
+  Route::get('/testNames','App\Http\Controllers\Api\Doctors\TestController@testNames');
+
+  //disease
+  Route::post('/AddDiseases/{id}','App\Http\Controllers\Api\Doctors\DoctorController@AddDiseases');
+  Route::get('/showDisease/{$id}','App\Http\Controllers\Api\Doctors\DoctorController@showDisease');
+  
 
   
 });
@@ -62,6 +70,10 @@ Route::post('/resetPasswordDoctor','App\Http\Controllers\Api\Doctors\AuthControl
 
 Route::get('/status','App\Http\Controllers\Api\Doctors\DoctorController@index')->name('status');
 Route::post('/loginEmployee','App\Http\Controllers\employee@login');
+
+
+
+
 
 // Route::post('/loginnn','App\Http\Controllers\Api\Doctors\AuthController@login')->name('login.api');
 // Route::post('/registerrrrr','App\Http\Controllers\Api\Doctors\AuthController@register')->name('register.api');

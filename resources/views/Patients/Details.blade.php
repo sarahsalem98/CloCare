@@ -86,71 +86,81 @@
 
 
                                             <tr>
-                                                <td><b>	weight</b> </td>
+                                                <td><b> weight</b> </td>
                                                 <td>
                                                     {{$patient->weight}}
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td><b>Diseases1</b></td>
+                                                @foreach ($patient->disease as $item)
+                                                <td>asthma ={{$item->asthma}}</td>
+                                                <td>chf={{$item->chf}}</td>
+                                                <td>cad={{$item->cad}}</td>
+                                                <td>mi={{$item->mi}}</td>
+                                                <td>cva ={{$item->cva}}</td>
+                                                <td>copd={{$item->copd}}</td>
+                                               
+
+                                                @endforeach
+
+                                            </tr>
 
                                             <tr>
-                                                <td><b>	bloodType</b> </td>
+                                             <td> <b>Diseases2</b></td>
+                                                @foreach ($patient->disease as $item)
+                                                <td>cancer={{$item->cancer}}</td>
+                                                <td>hypertension={{$item->hypertension}}</td>
+                                                <td>diabetes={{$item->diabetes}}</td>
+                                                <td>pulse={{$item->pulse}}</td>
+                                                <td>sys_bp={{$item->sys_bp}}</td>
+                                                
+                                                <td>dia_bp={{$item->dia_bp}}</td>
+
+                                                @endforeach
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>	medicines</b> </td>
+                                                <td>
+                                                    @for($i=0;$i<=5;$i++)
+                                                   , {{$patient->medicines[$i]}}
+                                                    @endfor
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b> bloodType</b> </td>
                                                 <td>
                                                     {{$patient->bloodType}}
                                                 </td>
                                             </tr>
 
-                                            <tr>
-                                                <td><b>	diseases</b> </td>
-                                                <td>
-                                                    @for($i=0;$i<=5;$i++)
-                                                    {{$patient->diseases[$i]}},,
-                                                    @endfor
-                                                </td>
-                                            </tr>
-                                           
-                                            <tr>
-                                                <td><b>	medicines</b> </td>
-                                                <td>
-                                                    @for($i=0;$i<=5;$i++)
-                                                    {{$patient->medicines[$i]}}
-                                                    @endfor
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>	allergies</b> </td>
-                                                <td>
-                                                    @for($i=0;$i<=5;$i++)
-                                                    {{$patient->allergies[$i]??null}}
-                                                    @endfor
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>	disabilities</b> </td>
-                                                <td>
-                                                    @for($i=0;$i<=5;$i++)
-                                                    {{$patient->disabilities[$i]??null}}
-                                                    @endfor
-                                                </td>
-                                            </tr>
+
+
+
+
+
 
                                             <tr>
-                                                <td><b>	hospital name</b> </td>
+                                                <td><b> hospital name</b> </td>
                                                 <td>
-                                            
+
                                                     {{$patient->hospital_name}}
-                                                 
+
                                                 </td>
                                             </tr>
 
 
                                             <tr>
-                                                <td><b>	created_at</b> </td>
+                                                <td><b> created_at</b> </td>
                                                 <td>
                                                     {{$patient->created_at}}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td><b>	updated_at</b> </td>
+                                                <td><b> updated_at</b> </td>
                                                 <td>
                                                     {{$patient->updated_at}}
                                                 </td>

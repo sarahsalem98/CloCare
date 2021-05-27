@@ -53,8 +53,7 @@ class AuthController extends Controller
     public function resetPassword(Request $request){
         try{
             $validator = Validator::make($request->all(), [
-                'national_id' => 'required|string',
-                'password' => 'required|string|min:5|confirmed',
+                'password' => 'required|string|min:5|confirmed'
             ]);
             if ($validator->fails())
             {

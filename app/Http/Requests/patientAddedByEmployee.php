@@ -26,6 +26,12 @@ class patientAddedByEmployee extends FormRequest
         return [
             'national_id' => 'required|integer|unique:patients|min:14',
             'name' => 'required|string|max:255',
+            'arriving_date'=>'required||date',
+            'phone_number'=>'required|integer|min:11',
+            'age'=>'required|integer',
+            'blood_type'=>'requird',
+            'height'=>'required|integer|min:0|max:200',
+            'weight'=>'requird|integer|min:0|max:200'
             
 
         ];
