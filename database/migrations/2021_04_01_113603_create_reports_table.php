@@ -20,7 +20,14 @@ class CreateReportsTable extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->text('reports_photo_path')->nullable();
-            $table->text('report')->nullable();
+            $table->text('diagnose')->nullable();
+            $table->string('medicine')->nullable();
+            $table->text('traits')->nullable();
+            $table->string('department')->nullable();
+            $table->string('comments')->nullable();
+            $table->string('arriving_date')->nullable();
+            $table->string('discharge_date')->nullable();
+          
             $table->timestamps();
         });
     }

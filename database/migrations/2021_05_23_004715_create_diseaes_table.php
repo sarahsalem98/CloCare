@@ -19,18 +19,18 @@ class CreateDiseaesTable extends Migration
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->unsignedBigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
-            $table->boolean('asthma')->nullable()->default(null);
-            $table->boolean('chf')->nullable()->default(null);
-            $table->boolean('cad')->nullable()->default(null);
-            $table->boolean('mi')->nullable()->default(null);
-            $table->boolean('cva')->nullable()->default(null);
-            $table->boolean('copd')->nullable()->default(null);
-            $table->boolean('cancer')->nullable()->default(null);
-            $table->boolean('hypertension')->nullable()->default(null);
+            $table->string('asthma')->nullable();
+            $table->string('chf')->nullable();
+            $table->string('cad')->nullable();
+            $table->string('mi')->nullable();
+            $table->string('cva')->nullable();
+            $table->string('copd')->nullable();
+            $table->string('cancer')->nullable();
+            $table->string('hypertension')->nullable();
             $table->string('diabetes')->nullable();
             $table->integer('pulse')->nullable();
-            $table->float('sys_bp',6,4)->nullable();
-            $table->float('dia_bp',6,4)->nullable();
+            $table->float('sys_bp')->nullable();
+            $table->float('dia_bp')->nullable();
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class Addreports extends FormRequest
 {
@@ -24,14 +25,14 @@ class Addreports extends FormRequest
     public function rules()
     {
         return [
-            'diagnose'=>'required',
-            'medicine'=>'required',
-            'traits'=>'required',
-            'department'=>'required',
-            // 'comments'=>'required',
-            'arriving_date'=>'required ||date',
-            'discharge_date'=>'required ||date',
-            // 'reports_photo_path'=>'required'
+            'diagnose'=>new RequiredIf ($this->diagnose),
+            'medicine'=>new RequiredIf ($this->medicine),
+            'traits'=>new RequiredIf ($this->traits),
+            'department'=>new RequiredIf ($this->department),
+            'comments'=>new RequiredIf ($this->comments),
+            'arriving_date'=>[new RequiredIf ($this->arriving_date),'date'],
+            'discharge_date'=>[new RequiredIf ($this->discharge_date),'date'],
+             'reports_photo_path'=>new RequiredIf ($this->reports_photo_path),
         ];
     }
 }

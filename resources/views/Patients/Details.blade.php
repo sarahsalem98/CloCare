@@ -45,7 +45,7 @@
                                             <tr>
                                                 <td width="400"><b>Phone number</b> </td>
                                                 <td>
-                                                    {{$patient->phoneNumber}}
+                                                    {{$patient->phone_number}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -60,7 +60,12 @@
                                                     {{$patient->birth_date}}
                                                 </td>
                                             </tr>
-
+                                            <tr>
+                                                <td><b>Arriving at</b> </td>
+                                                <td>
+                                                    {{$patient->arriving_date}}
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <td><b>Age</b> </td>
                                                 <td>
@@ -125,7 +130,7 @@
                                                 <td><b>	medicines</b> </td>
                                                 <td>
                                                     @for($i=0;$i<=5;$i++)
-                                                   , {{$patient->medicines[$i]}}
+                                                   , {{$patient->medicines[$i]??null}}
                                                     @endfor
                                                 </td>
                                             </tr>

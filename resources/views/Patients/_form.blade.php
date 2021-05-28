@@ -19,10 +19,7 @@
 
 <div class="row">
 
-    <div class="form-group col-md-2">
-        <label for="position">Password</label>
-        <input value="{{old('password', $patient->password ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter password" name="password">
-    </div>
+
     <div class="form-group col-md-2">
         <label for="exampleInputEmail1">Phone number</label>
         <input value="{{old('phone_number', $patient->phone_number ?? null)}}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter phone number" name="phone_number">
@@ -39,23 +36,32 @@
         <input value="{{old('address', $patient->address ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter address" name="address">
 
     </div>
-  
+
 
 </div>
 <div class="row">
 
-<div class="form-group col-md-4">
-        <label for="position">status</label>
-        <input value="{{old('statues', $patient->statues ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter statues" name="statues">
 
-    </div>
     <div class="form-group col-md-4">
         <label for="position">hospital name</label>
         <input value="{{old('hospital_name', $patient->hospital_name ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter hospital name" name="hospital_name">
 
     </div>
+    <div class="form-group col-md-2">
+        <label for="position">gender</label>
+        <select name="gender" >
+            <option value="male">male</option>
+            <option value="female">female</option>
 
- </div>
+        </select>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="position"> arriving_data</label>
+        <input value="{{old('arriving_date', $patient->arriving_date ?? null)}}" type="date" class="form-control" id="position" placeholder="Enter hospital name" name="arriving_date">
+
+    </div>
+
+</div>
 
 
 
@@ -95,16 +101,16 @@
 
     <div class="form-group col-md-2">
         <label for="position">Medicines</label>
-        <input value="{{old('medicines[0]', $patient->medicines[0] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[]">
+        <input value="{{old('medicines[0]', $patient->medicines[0] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[0]">
     </div>
 
     <div class="form-group col-md-2">
         <label for="position"></label>
-        <input value="{{old('medicines[1]', $patient->medicines[1] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[]">
+        <input value="{{old('medicines[1]', $patient->medicines[1] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[1]">
     </div>
     <div class="form-group col-md-2">
         <label for="position"></label>
-        <input value="{{old('medicines[2]', $patient->medicines[2] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[]">
+        <input value="{{old('medicines[2]', $patient->medicines[2] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[2]">
     </div>
 
 </div>
@@ -113,15 +119,15 @@
 
     <div class="form-group col-md-2">
         <label for="position"></label>
-        <input value="{{old('medicines[3]', $patient->medicines[3] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[]">
+        <input value="{{old('medicines[3]', $patient->medicines[3] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[3]">
     </div>
     <div class="form-group col-md-2">
         <label for="position"></label>
-        <input value="{{old('medicines[4]', $patient->medicines[4] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[]">
+        <input value="{{old('medicines[4]', $patient->medicines[4] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[4]">
     </div>
     <div class="form-group col-md-2">
         <label for="position"></label>
-        <input value="{{old('medicines[5]', $patient->medicines[5] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[]">
+        <input value="{{old('medicines[5]', $patient->medicines[5] ?? null)}}" type="text" class="form-control" id="position" placeholder="Enter a medicine" name="medicines[5]">
     </div>
 
 </div>

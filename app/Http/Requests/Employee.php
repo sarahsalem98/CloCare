@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class Employee extends FormRequest
 {
@@ -25,14 +26,13 @@ class Employee extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email'=>'required|unique:employees',
-            'national_id' => 'required|integer|unique:employees',
-            'password' => 'required|string|min:8',
-            'specialization' => 'required|string|max:255',
-            'work_at' => 'required|string|max:255',
-            'phone_number'=>'required|integer',
-            'address'=>'required|string',
-            'is_admin'=>'required|boolean'
+            'email'=>'required|unique:users',
+            'national_id' => 'required|integer|unique:users',
+            'specialization' => [new RequiredIf ($this->specialization),'string'],
+            'work_at' => [new RequiredIf ($this->work_at),'string'],
+            'phone_number'=>[new RequiredIf ($this->phone_number),'integer','min:11'],
+            'address'=>[new RequiredIf ($this->address),'string'],
+            'is_admin'=>[new RequiredIf ($this->income),'boolean']
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class Diseaes extends FormRequest
 {
@@ -24,18 +25,19 @@ class Diseaes extends FormRequest
     public function rules()
     {
         return [
-           'asthma'=>'boolean'
-           ,'chf'=>'boolean'
-           ,'cad'=>'boolean'
-           ,'mi'=>'boolean'
-           ,'cva'=>'boolean'
-           ,'copd'=>'boolean'
-           ,'cancer'=>'boolean'
-           ,'hypertension'=>'boolean'
-           ,'diabetes'=>'in:yes,no,borderline'
-           ,'pulse'=>'integer'
-           ,'sys_bp'=>'integer'
-           ,'dia_bp'=>'integer'
+           'asthma'=> [new RequiredIf ($this->asthma),'in:yes,no']
+           ,'chf'=>[new RequiredIf ($this->chf),'in:yes,no']
+           ,'cad'=>[new RequiredIf ($this->cad),'in:yes,no']
+           ,'mi'=>[new RequiredIf ($this->mi),'in:yes,no']
+           ,'cva'=>[new RequiredIf ($this->cva),'in:yes,no']
+           ,'copd'=>[new RequiredIf ($this->copd),'in:yes,no']
+           ,'cancer'=>[new RequiredIf ($this->cancer),'in:yes,no']
+           ,'hypertension'=>[new RequiredIf ($this->hypertension),'in:yes,no']
+           ,'diabetes'=>[new RequiredIf ($this->diabetes),'in:yes,no,borderline']
+
+           ,'pulse'=>[new RequiredIf ($this->pulse),'integer']
+           ,'sys_bp'=>[new RequiredIf ($this->sys_bp),'integer']
+           ,'dia_bp'=>[new RequiredIf ($this->dia_bp),'integer']
         ];
     }
 }

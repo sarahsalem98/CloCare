@@ -56,7 +56,6 @@ return array(
     'App\\Models\\Sensors' => $baseDir . '/app/Models/Sensors.php',
     'App\\Models\\TestName' => $baseDir . '/app/Models/TestName.php',
     'App\\Models\\TestValue' => $baseDir . '/app/Models/TestValue.php',
-    'App\\Models\\Uric' => $baseDir . '/app/Models/Uric.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

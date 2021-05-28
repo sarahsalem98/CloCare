@@ -20,10 +20,10 @@ class CreateDoctorsTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->text('profile_photo_path')->nullable();
-            $table->string('specialization');
-            $table->string('work_at');
-            $table->string('api_token',100)
-            ->unique()
+            $table->string('specialization')->nullable();
+            $table->integer('phone_number')->nullable();
+            $table->string('work_at')->nullable();
+            $table->string('api_token',100) ->unique()
             ->nullable()
             ->default(null);
             $table->timestamps();

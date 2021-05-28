@@ -69,7 +69,7 @@
 							</td>
 
 							<td>
-								{{$patient->phoneNumber}}
+								{{$patient->phone_number}}
 							</td>
 
 

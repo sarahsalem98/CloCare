@@ -636,7 +636,6 @@ class ComposerStaticInit653d3430afa75f357cd56998b0f244cd
         'App\\Models\\Sensors' => __DIR__ . '/../..' . '/app/Models/Sensors.php',
         'App\\Models\\TestName' => __DIR__ . '/../..' . '/app/Models/TestName.php',
         'App\\Models\\TestValue' => __DIR__ . '/../..' . '/app/Models/TestValue.php',
-        'App\\Models\\Uric' => __DIR__ . '/../..' . '/app/Models/Uric.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

@@ -66,7 +66,7 @@ class Patients extends Controller
         $validatedData=$request->validated();
         $patient= new ModelsPatients();
         $patient->fill($validatedData);
-        $patient->password=bcrypt($request['password']);
+        $patient->password=bcrypt($request['national_id']);
         $patient->api_token=Str::random(100);
         if($request->hasFile('profile_photo_path')){
             $path=$request->file('profile_photo_path')->store('patients');

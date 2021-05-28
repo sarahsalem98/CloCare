@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class EmployeeUpdate extends FormRequest
 {
@@ -24,15 +25,15 @@ class EmployeeUpdate extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'email'=>'required|unique:employees',
-            'national_id' => 'required|integer|unique:employees',
-            'password' => 'required|string|min:8',
-            'specialization' => 'required|string|max:255',
-            'work_at' => 'required|string|max:255',
-            'phone_number'=>'required|integer',
-            'address'=>'required|string',
-            'is_admin'=>'required|boolean'
+            'national_id' => [new RequiredIf ($this->national_id),'integer','min:14','unique:users'],
+            'name' =>  [new RequiredIf ($this->name),'string'],
+            'email'=> [new RequiredIf ($this->email),'string','unique:users'],
+            'password' =>  [new RequiredIf ($this->password),'string','min:8'],
+            'specialization' =>  [new RequiredIf ($this->specialization),'string'],
+            'work_at' =>  [new RequiredIf ($this->work_at),'string'],
+            'phone_number'=> [new RequiredIf ($this->phone_number),'integer','min:11'],
+            'address'=> [new RequiredIf ($this->address),'string'],
+            'is_admin'=> [new RequiredIf ($this->is_admin),'boolean'],
         ];
     }
 }
