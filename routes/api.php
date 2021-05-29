@@ -52,12 +52,15 @@ Route::middleware('auth:doctor')->group(function(){
   Route::middleware('auth:patient')->group(function(){
    Route::resource('/patient','App\Http\Controllers\Api\Patients\PatientController')->only(['show']);
    Route::get('/showMedicalHistoryPatient/{id}','App\Http\Controllers\Api\Patients\PatientController@showMedicalHistory');
-   Route::resource('Sensor','App\Http\Controllers\Api\Patients\SensorsController')->only('store');
+   Route::resource('/Sensor','App\Http\Controllers\Api\Patients\SensorsController')->only('store');
 
 });
 
 Route::middleware('auth:api')->group(function(){
-Route::post('/addPatientByEmp','App\Http\Controllers\employee@addPatient');
+  Route::post('/addPatientByEmp','App\Http\Controllers\employee@addPatient');
+  Route::get('/CheckPatient/{id}','App\Http\Controllers\employee@CheckPatient');
+
+
 });
 
 

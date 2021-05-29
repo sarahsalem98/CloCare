@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class patientAddedByEmployee extends FormRequest
 {
@@ -24,14 +25,14 @@ class patientAddedByEmployee extends FormRequest
     public function rules()
     {
         return [
-            'national_id' => 'required|integer|unique:patients|min:14',
-            'name' => 'required|string|max:255',
-            'arriving_date'=>'required||date',
-            'phone_number'=>'required|integer|min:11',
-            'age'=>'required|integer',
-            'blood_type'=>'requird',
-            'height'=>'required|integer|min:0|max:200',
-            'weight'=>'requird|integer|min:0|max:200'
+            'national_id' => 'integer|unique:patients|min:14',
+            'name' => 'string|max:255',
+            'arriving_date'=>'date',
+            'phone_number'=>'integer|min:11',
+            'age'=>'integer',
+            'blood_type'=>new RequiredIf ($this->blood_type),
+            'height'=>'integer|min:0|max:200',
+            'weight'=>'integer|min:0|max:200'
             
 
         ];

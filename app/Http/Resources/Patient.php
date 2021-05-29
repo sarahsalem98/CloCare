@@ -19,7 +19,7 @@ class Patient extends JsonResource
             'national_id'=>$this->national_id,
             'name'=>$this->name,
             // 'password'=>$this->password,
-            'phoneNumber'=>$this->phoneNumber,
+            'phoneNumber'=>$this->phone_number,
             'address'=>$this->address,
             'api_token'=>$this->api_token,
             'birth_date'=>$this->birth_date,

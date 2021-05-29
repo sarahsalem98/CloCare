@@ -50,8 +50,9 @@ class employee extends Controller
     }
 
 
-    public function addPatient(patientAddedByEmployee $request){
+    public function addPatient(patientAddedByEmployee $request ){
         try{
+       
             $validatedData=$request->validated();
             $patient= new Patients();
             $patient->fill($validatedData);
@@ -69,5 +70,21 @@ class employee extends Controller
             return response()->json(['errors' => $e->getMessage()], 500);
         }
      
+    }
+
+
+    public function CheckPatient($id){
+        try{
+            $patient= Patients::where('national_id',$id)->get();
+        if($patient){
+            return response()->json(['the patient you want '=>$patient]);
+        }else{
+            return response()->json(['message'=>'the patient you want  can noy be found please make sue=rw you add him/her']);
+        }
+
+         }catch(Exception $e){
+            return response()->json(['errors' => $e->getMessage()], 500);
+        }
+
     }
 }
