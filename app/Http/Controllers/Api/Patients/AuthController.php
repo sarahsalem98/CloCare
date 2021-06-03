@@ -18,6 +18,7 @@ class AuthController extends Controller
             $validator = Validator::make($request->all(), [
                 'national_id' => 'required|string',
                 'password' => 'required|string|min:5',
+                
             ]);
             if ($validator->fails())
             {
@@ -27,11 +28,18 @@ class AuthController extends Controller
                 
                 ], 422);
             }
-            $user = Patients::where('national_id', $request->national_id)->first();
+            $user = Patients::where('national_id', $request->national_id)->with('report')->with('disease')->with('test')->first();
             if ($user) {
                 if (Hash::check( $request->password,$user->password )) {
                     $token = $user->api_token;
-                    return ['patient'=>new Patient($user)];
+                    if($request->is_mobile==1){
+                        return response()->json($user, 200);
+
+                    }else{
+                        return response()->json(  $token,422);
+
+  
+                    }
                 } else {
                 
                     return response()->json( ["message" => "Password mismatch"],422);

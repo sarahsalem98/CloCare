@@ -221,9 +221,11 @@ class DoctorController extends Controller
           public function searchPatient(Request $request){
               try{
             $word = $request->get('search');
-            $patients= Patients::where('national_id', 'LIKE', "%{$word}%")->get();
+           $patients= Patients::where('national_id', 'LIKE', "%{$word}%")->with('disease')->with('test')->with('report')->get();
             if($patients){
-                return response()->json(['patients found are '=>$patients],200);
+                // return response()->json(['patients found are '=> 
+                // $patients->where('id',$patients->id)->with('report')->with('disease')->with('test')->get()],200);
+                return  response()->json(['patients'=> $patients],200);
             }else{
                 return response()->json(['message'=>'no patient found'],404);
             }

@@ -77,7 +77,7 @@ class employee extends Controller
         try{
             $patient= Patients::where('national_id',$id)->get();
         if($patient){
-            return response()->json(['the patient you want '=>$patient]);
+            return response()->json($patient[0]);
         }else{
             return response()->json(['message'=>'the patient you want  can noy be found please make sue=rw you add him/her']);
         }
