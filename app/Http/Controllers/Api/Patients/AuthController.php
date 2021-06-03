@@ -33,7 +33,7 @@ class AuthController extends Controller
                 if (Hash::check( $request->password,$user->password )) {
                     $token = $user->api_token;
                     if($request->is_mobile==1){
-                        return response()->json($user, 200);
+                        return response()->json(['patient'=>$user,'token'=>$token]);
 
                     }else{
                         return response()->json(  $token,422);
