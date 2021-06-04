@@ -36,7 +36,7 @@ class AuthController extends Controller
                         return response()->json(['patient'=>$user,'token'=>$token]);
 
                     }else{
-                        return response()->json(  $token,422);
+                        return response()->json(  $token,200);
 
   
                     }
