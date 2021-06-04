@@ -34,6 +34,7 @@ class SensorsController extends Controller
         $sensor->heartRate=$request['heartRate'];
         $sensor->temp=$request['temp'];
         $patient->sensors()->save($sensor);
+        return response()->json($patient->sensors()->latest()->take(3)->get());
     }
 
     /**
