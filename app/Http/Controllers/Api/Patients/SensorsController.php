@@ -18,7 +18,9 @@ class SensorsController extends Controller
     public function index()
     {
         //
+
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -28,13 +30,23 @@ class SensorsController extends Controller
      */
     public function store(Request $request)
     {
-        $patient= Patients::find(Auth()->user()->id);
-        $sensor= new Sensors();
-        $sensor->spo2=$request['spo2'];
-        $sensor->heartRate=$request['heartRate'];
-        $sensor->temp=$request['temp'];
+        $patient = Patients::find(Auth()->user()->id);
+        $sensor = new Sensors();
+        $sensor->spo2 = $request['spo2'];
+        $sensor->heartRate = $request['heartRate'];
+        $sensor->temp = $request['temp'];
         $patient->sensors()->save($sensor);
-        return response()->json($patient->sensors()->latest()->take(3)->get());
+        $ids = [];
+        $count = $patient->sensors()->count();
+
+        $deleteUs = $patient->sensors()->latest()->take($count)->skip(10)->get();
+
+        foreach ($deleteUs as $deleteMe) {
+            $ids[] = $deleteMe->id;
+        }
+
+        Sensors::destroy($ids);
+        return response()->json($patient->sensors()->get());
     }
 
     /**
@@ -45,7 +57,6 @@ class SensorsController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

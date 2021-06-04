@@ -161,5 +161,23 @@ class Patients extends Controller
  
         return view('Patients.PatientsOut',['patients'=>$patients]);
     }
+    public function showSensorReadingsForPatient($id_patient){
+        $patient=ModelsPatients::findOrFail($id_patient);
+        $sensorPatients=$patient->sensors()->get();
+        $avgspo2=$patient->sensors()->avg('spo2');
+        $avgtemp=$patient->sensors()->avg('temp');
+        $avgheart=$patient->sensors()->avg('heartRate');
+               return view ('Patients.Sensor',[
+                   
+           'sensorPatients'=>$sensorPatients
+           ,'patient'=>$patient,
+           'avgspo2'=>$avgspo2,
+           'avgtemp'=>$avgtemp,
+           'avgheart'=>$avgheart
+                
+             ]);
+    
+    }
+
 
 }

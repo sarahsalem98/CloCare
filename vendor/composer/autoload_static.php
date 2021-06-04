@@ -626,6 +626,7 @@ class ComposerStaticInit653d3430afa75f357cd56998b0f244cd
         'App\\Http\\Requests\\PatientsUpdate' => __DIR__ . '/../..' . '/app/Http/Requests/PatientsUpdate.php',
         'App\\Http\\Requests\\Test' => __DIR__ . '/../..' . '/app/Http/Requests/Test.php',
         'App\\Http\\Requests\\patientAddedByEmployee' => __DIR__ . '/../..' . '/app/Http/Requests/patientAddedByEmployee.php',
+        'App\\Http\\Resources\\CheckPatient' => __DIR__ . '/../..' . '/app/Http/Resources/CheckPatient.php',
         'App\\Http\\Resources\\Doctor' => __DIR__ . '/../..' . '/app/Http/Resources/Doctor.php',
         'App\\Http\\Resources\\Patient' => __DIR__ . '/../..' . '/app/Http/Resources/Patient.php',
         'App\\Models\\Diseaes' => __DIR__ . '/../..' . '/app/Models/Diseaes.php',

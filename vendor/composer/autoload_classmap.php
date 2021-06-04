@@ -46,6 +46,7 @@ return array(
     'App\\Http\\Requests\\PatientsUpdate' => $baseDir . '/app/Http/Requests/PatientsUpdate.php',
     'App\\Http\\Requests\\Test' => $baseDir . '/app/Http/Requests/Test.php',
     'App\\Http\\Requests\\patientAddedByEmployee' => $baseDir . '/app/Http/Requests/patientAddedByEmployee.php',
+    'App\\Http\\Resources\\CheckPatient' => $baseDir . '/app/Http/Resources/CheckPatient.php',
     'App\\Http\\Resources\\Doctor' => $baseDir . '/app/Http/Resources/Doctor.php',
     'App\\Http\\Resources\\Patient' => $baseDir . '/app/Http/Resources/Patient.php',
     'App\\Models\\Diseaes' => $baseDir . '/app/Models/Diseaes.php',

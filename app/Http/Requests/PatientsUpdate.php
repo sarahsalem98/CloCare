@@ -25,7 +25,7 @@ class PatientsUpdate extends FormRequest
     public function rules()
     {
         return [
-            'national_id' => [new RequiredIf ($this->national_id),'min:14','unique:patients'],
+            // 'national_id' => [new RequiredIf ($this->national_id),'min:14','unique:patients'],
             'name' => [new RequiredIf ($this->name),'string'],
             'password'=>[new RequiredIf ($this->password)],
             'arriving_date'=>[new RequiredIf ($this->arriving_date),'date'],

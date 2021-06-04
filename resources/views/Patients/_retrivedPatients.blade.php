@@ -45,6 +45,7 @@
 							<th>National Id</th>
 							<th>Phone number</th>
 							<th>Action</th>
+					
 						</tr>
 					</thead>
 
@@ -72,8 +73,12 @@
 								{{$patient->phone_number}}
 							</td>
 
-
 							<td>
+							
+					
+							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-success">sensors</a>
+							<td>
+			
 							
 								<form  method="POST" class="fm-inline" action="{{ route('Patients.destroy', ['Patient' => $patient->id]) }}">
 									@csrf

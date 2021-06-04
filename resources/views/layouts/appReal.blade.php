@@ -491,6 +491,7 @@
                       @yield('EditEmployee')
                       @yield('AllpatientsOut')
                       @yield('AllpatientsIn')
+                      @yield('Sensors')
 
                     </div> <!-- container -->
                                
