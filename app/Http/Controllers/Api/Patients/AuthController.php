@@ -13,79 +13,70 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login (Request $request) {
-        try{
+    public function login(Request $request)
+    {
+        try {
             $validator = Validator::make($request->all(), [
                 'national_id' => 'required|string',
                 'password' => 'required|string|min:5',
-                
+
             ]);
-            if ($validator->fails())
-            {
+            if ($validator->fails()) {
                 return response([
-                    "message"=>'The given data was invalid.',
-                    "errors"=>$validator->errors()
-                
+                    "message" => 'The given data was invalid.',
+                    "errors" => $validator->errors()
+
                 ], 422);
             }
             $user = Patients::where('national_id', $request->national_id)->with('report')->with('disease')->with('test')->first();
             if ($user) {
-                if (Hash::check( $request->password,$user->password )) {
+                if (Hash::check($request->password, $user->password)) {
                     $token = $user->api_token;
-                    if($request->is_mobile==1){
-                        return response()->json(['patient'=>$user,'token'=>$token]);
-
-                    }else{
-                        return response()->json(  $token,200);
-
-  
+                    if ($request->is_mobile == 1) {
+                        return response()->json(['patient' => $user, 'token' => $token]);
+                    } else {
+                        return response()->json(['api_token' => $token], 200);
                     }
                 } else {
-                
-                    return response()->json( ["message" => "Password mismatch"],422);
-    
+
+                    return response()->json(["message" => "Password mismatch"], 422);
                 }
             } else {
-            
-                return response()->json(["message" =>'User does not exist'],422);
+
+                return response()->json(["message" => 'User does not exist'], 422);
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return response()->json(['errors' => $e->getMessage()], 500);
         }
-       
     }
 
 
 
 
-    public function resetPassword(Request $request){
-        try{
+    public function resetPassword(Request $request)
+    {
+        try {
             $validator = Validator::make($request->all(), [
                 'password' => 'required|string|min:5|confirmed'
             ]);
-            if ($validator->fails())
-            {
+            if ($validator->fails()) {
                 return response([
-                    "message"=>'The given data was invalid.',
-                    "errors"=>$validator->errors()
+                    "message" => 'The given data was invalid.',
+                    "errors" => $validator->errors()
                 ], 422);
             }
-                $token = $request->bearerToken();
-                $password=$request->password;
-                $user = Patients::where('national_id', $request->national_id)->first();
-                if($token==$user->api_token){
-                    $user->password =bcrypt($password) ;
-                    $user->save();
-                    return response()->json(["message" => "Password has been successfully changed"]);
-                }else {
+            $token = $request->bearerToken();
+            $password = $request->password;
+            $user = Patients::where('national_id', $request->national_id)->first();
+            if ($token == $user->api_token) {
+                $user->password = bcrypt($password);
+                $user->save();
+                return response()->json(["message" => "Password has been successfully changed"]);
+            } else {
                 return response()->json(["message" => "Invalid token provided"], 400);
             }
-
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return response()->json(['errors' => $e->getMessage()], 500);
         }
-        
-
-      
     }
 }
