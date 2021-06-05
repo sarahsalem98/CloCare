@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Patients as RequestsPatients;
 use App\Http\Requests\PatientsUpdate;
 use App\Models\Patients as ModelsPatients;
+use App\Models\TestName ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,7 @@ class Patients extends Controller
      */
     public function index()
     {
+        
 
         $count_discharge=ModelsPatients::where('statues',1)->count();
         $count_In=ModelsPatients::where('statues',0)->count();
@@ -161,6 +163,9 @@ class Patients extends Controller
  
         return view('Patients.PatientsOut',['patients'=>$patients]);
     }
+
+
+
     public function showSensorReadingsForPatient($id_patient){
         $patient=ModelsPatients::findOrFail($id_patient);
         $sensorPatients=$patient->sensors()->get();
@@ -177,6 +182,11 @@ class Patients extends Controller
                 
              ]);
     
+    }
+
+    public function showTestForEveryPatients($id_patient){
+     return view TestName::get()
+
     }
 
 

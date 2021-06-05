@@ -38,6 +38,8 @@ Route::middleware('auth:doctor')->group(function(){
 //test 
   Route::post('/addTest/{test_id}/{patient_id}','App\Http\Controllers\Api\Doctors\TestController@addtest');
   Route::get('/testNames','App\Http\Controllers\Api\Doctors\TestController@testNames');
+Route::post('/addTestNames','App\Http\Controllers\Api\Doctors\TestController@addTestNames');
+
 
   //disease
   Route::post('/AddDiseases/{id}','App\Http\Controllers\Api\Doctors\DoctorController@AddDiseases');

@@ -26,6 +26,20 @@ class TestController extends Controller
    }
 
 
+   public function addTestNames(Request $request){
+       try{
+       $testName= new TestName();
+       $testName->name=$request['name'];
+       $testName->save();
+       
+      return response()->json(TestName::get());
+
+    }catch(Exception $e){
+        return response()->json(['errors' => $e->getMessage()], 500);
+       }
+   }
+
+
 
     public function addtest(Test $request,$test_id,$patient_id){
 

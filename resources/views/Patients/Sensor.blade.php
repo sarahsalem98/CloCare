@@ -38,7 +38,7 @@
                 <table class="table table-hover mails m-0 table table-actions-bar">
                     <thead>
                         <tr>
-                            <th>
+                            <!-- <th> -->
                                 <!-- <div class="checkbox checkbox-primary checkbox-single m-r-15">
                                                             <input id="action-checkbox" type="checkbox">
                                                             <label for="action-checkbox"></label>
@@ -53,26 +53,20 @@
 				                                                <li><a href="#">Separated link</a></li>
 				                                            </ul>
 				                                        </div> -->
-                            </th>
+                            <!-- </th> -->
                             <th>patient id</th>
                             <th>spo2</th>
-                            <th>temprature</th>
                             <th>heart rate</th>
-                       
+                            <th>temprature</th>
+                            <th>created at</th>
+                            <th>updated at</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach($sensorPatients as $sensorPatient)
                         <tr class="active">
-                            <td>
-                                <div class="checkbox checkbox-primary m-r-15">
-                                    <input id="checkbox2" type="checkbox" checked="">
-                                    <label for="checkbox2"></label>
-                                </div>
-
-
-                            </td>
+                 
                             <td>
                                 {{$sensorPatient->patient_id}}
                             </td>
@@ -90,7 +84,13 @@
                                 {{$sensorPatient->temp}}
                             </td>
 
+                            <td>
+                                {{$sensorPatient->created_at }}
+                            </td>
 
+                            <td>
+                                {{$sensorPatient->updated_at }}
+                            </td>
 
                         </tr>
                         @endforeach

@@ -44,6 +44,7 @@
 							<th>Name</th>
 							<th>National Id</th>
 							<th>Phone number</th>
+							<th> other controllers</th>
 							<th>Action</th>
 					
 						</tr>
@@ -73,10 +74,13 @@
 								{{$patient->phone_number}}
 							</td>
 
-							<td>
+						
 							
-					
+					<td>
 							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-success">sensors</a>
+							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-info">tests</a>
+							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-warning">reports</a>
+					</td>
 							<td>
 			
 							
