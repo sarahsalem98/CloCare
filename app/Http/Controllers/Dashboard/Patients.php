@@ -7,6 +7,7 @@ use App\Http\Requests\Patients as RequestsPatients;
 use App\Http\Requests\PatientsUpdate;
 use App\Models\Patients as ModelsPatients;
 use App\Models\TestName ;
+use App\Models\TestValue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +32,8 @@ class Patients extends Controller
            [
             'patients'=>ModelsPatients::get(),
             'count_discharge'=>$count_discharge,
-            'count_In'=>$count_In
+            'count_In'=>$count_In,
+            'testNames'=>TestName::get()
             ]);
     }
 
@@ -184,9 +186,12 @@ class Patients extends Controller
     
     }
 
-    public function showTestForEveryPatients($id_patient){
-     return view TestName::get()
-
+    public function showTestValues($test_id,$patient_id){
+        $patient=ModelsPatients::findOrFail($patient_id);
+        $testName=TestName::findOrFail($test_id);
+   $testValues= TestValue::where('test_id',$test_id)->where('patient_id',$patient_id)->get();
+   return view('Patients.TestValues',['testVales'=>$testValues,'patient'=>$patient,'testName'=>$testName]);
+// dd($testValues);
     }
 
 

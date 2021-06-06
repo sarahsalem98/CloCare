@@ -29,10 +29,11 @@ Route::post('/adminlogin','App\Http\Controllers\Controller@loginAdmin')->name('a
         Route::get('/getPatientsOut','App\Http\Controllers\Dashboard\Patients@indexOut')->name('getPatientsOut');
         Route::get('/getPatientsIn','App\Http\Controllers\Dashboard\Patients@indexIn')->name('getPatientsIn');
 
+        Route::get('/showSensorReadingsForPatient/{id}','App\Http\Controllers\Dashboard\Patients@showSensorReadingsForPatient')->name('sensorReadings');
+        Route::get('/showTestValues/{test_id}/{patient_id}','App\Http\Controllers\Dashboard\Patients@showTestValues')->name('showTestValues')  ;
    });
 
 //);
-Route::get('/showSensorReadingsForPatient/{id}','App\Http\Controllers\Dashboard\Patients@showSensorReadingsForPatient')->name('sensorReadings');
 Route::get('/', function () {
     return view('welcome');
 });

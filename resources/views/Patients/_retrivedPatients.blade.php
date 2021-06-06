@@ -77,8 +77,18 @@
 						
 							
 					<td>
+
+					<div class="dropdown ">
+  <button class="btn btn-info"> tests </button>
+  <div class="dropdown-content">
+	  @foreach($testNames as $testName)
+    <a href="{{route('showTestValues',['test_id'=>$testName->id,'patient_id'=>$patient->id])}}">{{$testName->name}}</a>
+  @endforeach
+  </div>
+</div>
 							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-success">sensors</a>
-							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-info">tests</a>
+							
+						
 							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-warning">reports</a>
 					</td>
 							<td>
