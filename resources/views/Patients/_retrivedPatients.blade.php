@@ -79,7 +79,7 @@
 					<td>
 
 					<div class="dropdown ">
-  <button class="btn btn-info"> tests </button>
+  <button class="btn btn-info"> tests _ </button>
   <div class="dropdown-content">
 	  @foreach($testNames as $testName)
     <a href="{{route('showTestValues',['test_id'=>$testName->id,'patient_id'=>$patient->id])}}">{{$testName->name}}</a>

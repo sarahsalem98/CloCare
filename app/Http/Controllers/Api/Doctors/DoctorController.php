@@ -166,10 +166,10 @@ class DoctorController extends Controller
                 $report =new Reports;
                 if($request->hasFile('reports_photo_path')){
                     $photoreport=$request->file('reports_photo_path')->store('reports');
-                 
+                    $report->reports_photo_path=$photoreport;
+                    
                 }
                 $report->fill($validatedData);
-                $report->reports_photo_path=$photoreport;
                 $report->doctor_id=Auth::user()->id;
                 $patient->statues=1;
                 $patient->save();
