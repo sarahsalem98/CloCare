@@ -94,6 +94,12 @@ public function report(){
 public function disease(){
     return $this->hasMany(Diseaes::class,'patient_id','id');
 }
+public function reportDoctor(){
+    return $this->hasMany(Reports::class,'doctor_id','id');
+}
+// public function doctor(){
+//     return $this->belongsToMany(Doctors::class);
+// }
 
 }
         

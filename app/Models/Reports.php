@@ -20,6 +20,12 @@ protected $fillable=[
    'discharge_date',
    
 ];
-
+public function patient(){
+    return $this->belongsTo(Patients::class,'patient_id','id');
+}
+public function doctorMadeReport()
+{
+    return $this->belongsTo(Doctors::class,'doctor_id','id');
+}
 
 }

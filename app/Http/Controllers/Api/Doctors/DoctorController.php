@@ -172,13 +172,16 @@ class DoctorController extends Controller
                 $report->fill($validatedData);
                 $report->doctor_id=Auth::user()->id;
                 $patient->statues=1;
-                $patient->save();
-                $patient->report()->save($report);
+                // $patient->save();
+                // $patient->report()->save($report);
                  
+                $doctor=Doctors::where('id',Auth::user()->id);
                     return response()->json([
                         'message'=>' report has been added successfuly',
                         'patient ID'=>$patient->id
-                    ,   ' reports for tha same patient'=>$patient->where('id',$id)->with('report')->get()
+                    ,   ' reports for the same patient '=>
+                   $patient->where('id',$id)->with('report','report.doctorMadeReport')->get()
+                        // $report->with('doctor')->where('patient_id',$patient->id)->get()
                    //  ,'doctor that make the report '=>$patient->hasReports()->get()
                      ],200);
                     }else{
@@ -201,7 +204,7 @@ class DoctorController extends Controller
                 if($patient){
                     return response()->json([
                         // 'all reports this patient has '=>$report
-                 'medical_history ' => $patient->where('id',$id)->with('report')->with('disease')->with('test')->get(),
+                 'medical_history ' => $patient->where('id',$id)->with('report','doctorMadeReport')->with('disease')->with('test')->get(),
                 //    'sdfs'=> $patient->makeReports()->limit(1)->get()
                     ]
                     ,200);
@@ -221,7 +224,7 @@ class DoctorController extends Controller
           public function searchPatient(Request $request){
               try{
             $word = $request->get('search');
-           $patients= Patients::where('national_id', 'LIKE', "%{$word}%")->with('disease')->with('test')->with('report')->get();
+           $patients= Patients::where('national_id', 'LIKE', "%{$word}%")->with('disease')->with('test')->with('report','report.doctorMadeReport')->get();
             if($patients){
                 // return response()->json(['patients found are '=> 
                 // $patients->where('id',$patients->id)->with('report')->with('disease')->with('test')->get()],200);
