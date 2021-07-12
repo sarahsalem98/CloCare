@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Patients as RequestsPatients;
 use App\Http\Requests\PatientsUpdate;
 use App\Models\Patients as ModelsPatients;
+use App\Models\Reports;
 use App\Models\TestName ;
 use App\Models\TestValue;
 use Illuminate\Http\Request;
@@ -48,6 +49,12 @@ class Patients extends Controller
         return view('Patients.PatientsIn',['patients'=>$patients]);
     }
 
+
+    public function showReports($id){
+        $reports=Reports::where('patient_id',$id)->get();
+        $patient=ModelsPatients::findOrFail($id);
+        return view ('Patients.Reports',['reports'=>$reports,'patient'=>$patient]);
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -24,8 +24,10 @@ class Doctor extends JsonResource
             'specialization'=>$this->specialization,
             'work_at'=>$this->work_at,
             'api_token'=>$this->api_token,
+            'device_token'=>$this->device_token,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at
+
         ];
     }
 }

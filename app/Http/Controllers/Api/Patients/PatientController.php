@@ -88,7 +88,7 @@ class PatientController extends Controller
            if($patient){
                return response()->json([
                    // 'all reports this patient has '=>$report
-               $patient->with('makeReports')->get(),
+               $patient->$patient->where('id',$id)->with('report','doctorMadeReport')->with('disease')->with('test')->get() ,
            //    'sdfs'=> $patient->makeReports()->limit(1)->get()
                ]
                ,200);

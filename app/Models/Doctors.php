@@ -23,6 +23,7 @@ class Doctors extends Model
         'work_at',
         'api_token',
         'profile_photo_path',
+        'device_token'
 
     ];
     protected $hidden = [

@@ -89,7 +89,7 @@
 							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-success">sensors</a>
 							
 						
-							<a href="{{route('sensorReadings',['id'=> $patient->id])}}" class="btn btn-warning">reports</a>
+							<a href="{{route('showReports',['id'=> $patient->id])}}" class="btn btn-warning">reports</a>
 					</td>
 							<td>
 			

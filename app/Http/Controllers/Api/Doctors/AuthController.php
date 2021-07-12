@@ -34,6 +34,7 @@ class AuthController extends Controller
             if ($user) {
                 if (Hash::check( $request->password,$user->password )) {
                     $token = $user->api_token;
+                    $user->update(['device_token'=>$request->device_token]);
                     return [ 'doctor'=>new Doctor($user)]; 
                 } else {
                 

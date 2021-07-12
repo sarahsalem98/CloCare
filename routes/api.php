@@ -32,9 +32,15 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::middleware('auth:doctor')->group(function(){
 
   Route::post('/addreports/{id}','App\Http\Controllers\Api\Doctors\DoctorController@AddReports');
+
+  
   Route::get('/showMedicalHistory/{id}','App\Http\Controllers\Api\Doctors\DoctorController@showMedicalHistory');
   Route::get('/searchPatient','App\Http\Controllers\Api\Doctors\DoctorController@searchPatient');
+
+
   Route::resource('/DRpatient','App\Http\Controllers\Api\Doctors\DoctorController');
+
+
 //test 
   Route::post('/addTest/{test_id}/{patient_id}','App\Http\Controllers\Api\Doctors\TestController@addtest');
   Route::get('/testNames','App\Http\Controllers\Api\Doctors\TestController@testNames');
@@ -48,8 +54,6 @@ Route::post('/addTestNames','App\Http\Controllers\Api\Doctors\TestController@add
 
   
 });
-
-
 
   Route::middleware('auth:patient')->group(function(){
    Route::resource('/patient','App\Http\Controllers\Api\Patients\PatientController')->only(['show']);

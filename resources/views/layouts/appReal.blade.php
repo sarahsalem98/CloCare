@@ -493,6 +493,7 @@
                       @yield('AllpatientsIn')
                       @yield('Sensors')
                       @yield('TestValues')
+                      @yield('Reports')
 
                     </div> <!-- container -->
                                
