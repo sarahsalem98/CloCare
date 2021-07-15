@@ -106,7 +106,7 @@ class SensorsController extends Controller
         $sensor->temp = $request['temp'];
         $patient->sensors()->save($sensor);
 
-        $this->sendNotification($request);
+        //$this->sendNotification($request);
         $ids = [];
         $count = $patient->sensors()->count();
 
