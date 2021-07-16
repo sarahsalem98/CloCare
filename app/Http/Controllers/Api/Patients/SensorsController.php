@@ -31,26 +31,26 @@ class SensorsController extends Controller
         $SERVER_API_KEY = 'AAAAXV426tk:APA91bHtqNVU4U63DTWNk7Ljl2XyPWLWVzhH8o3sKjghAxJaXxLTmtIi-MXNkBN_kTr6jUF3bgtHdSAC9s9Va8xw8BN8KrZcrqgcJzRZ9E5AamsPdb73_5sKe2yqcU1ltsPCXHKjCHVH';
         if ($request['spo2'] >= 120) {
             $info = "spo for this patient is very high";
-            $body .= $info;
+            $body .= $info."\n";
         } elseif ($request['spo2'] <= 75) {
             $info = "spo for this patient is very low";
-            $body .= $info;
+            $body .= $info."\n";
         }
 
         if ($request['heartRate'] >= 190) {
             $info2 = "heartRate for this patient is very high";
-            $body .= $info2;
+            $body .= $info2."\n";
         } elseif ($request['heartRate'] <= 60) {
             $info2 = "heartRate for this patient is very low";
-            $body .= $info2;
+            $body .= $info2."\n";
         }
 
         if ($request['temp'] >= 190) {
             $info3 = "temprature for this patient is very high";
-            $body .= $info3;
+            $body .= $info3."\n";
         } elseif ($request['temp'] <= 60) {
             $info3 = "temprature for this patient is very low";
-            $body .= $info3;
+            $body .= $info3."\n";
         }
 
         $data = [
