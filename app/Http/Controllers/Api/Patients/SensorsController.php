@@ -25,31 +25,31 @@ class SensorsController extends Controller
     private function sendNotification(Request $request)
 
     { 
-        $body = " ";
+        $body ="";
         
         $firebaseToken = Doctors::whereNotNull('device_token')->pluck('device_token')->all();
         $SERVER_API_KEY = 'AAAAXV426tk:APA91bHtqNVU4U63DTWNk7Ljl2XyPWLWVzhH8o3sKjghAxJaXxLTmtIi-MXNkBN_kTr6jUF3bgtHdSAC9s9Va8xw8BN8KrZcrqgcJzRZ9E5AamsPdb73_5sKe2yqcU1ltsPCXHKjCHVH';
         if ($request['spo2'] >= 120) {
-            $info = "spo for this patient is very high";
+            $info = "SPO2 for this patient is very HiGH";
             $body .= $info."\n";
         } elseif ($request['spo2'] <= 75) {
-            $info = "spo for this patient is very low";
+            $info = "SPO2 for this patient is very LOW";
             $body .= $info."\n";
         }
 
         if ($request['heartRate'] >= 190) {
-            $info2 = "heartRate for this patient is very high";
+            $info2 = "Heart Rate for this patient is very HIGH";
             $body .= $info2."\n";
         } elseif ($request['heartRate'] <= 60) {
-            $info2 = "heartRate for this patient is very low";
+            $info2 = "Heart Rate for this patient is very LOW";
             $body .= $info2."\n";
         }
 
         if ($request['temp'] >= 190) {
-            $info3 = "temprature for this patient is very high";
+            $info3 = "TEMPERATURE for this patient is very HIGH";
             $body .= $info3."\n";
         } elseif ($request['temp'] <= 60) {
-            $info3 = "temprature for this patient is very low";
+            $info3 = "TEMPERATURE for this patient is very LOW";
             $body .= $info3."\n";
         }
 
